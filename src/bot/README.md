@@ -1,10 +1,7 @@
 # Discord Bot
 
-
-
-
-
-
+`pip install -r bot/requirements` Install requirements \
+`python -m bot` Run Bot
 
 Environment Variables
 ----------------------

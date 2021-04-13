@@ -1,4 +1,9 @@
+<img src="assets/Avatar.png" width="200" height="200">
+
 # DiscordArena
+Creating a Discord Game with a website
+
+![Classes](assets/Classes.png)
 
 # Development setup
 Using: `Python 3.9`

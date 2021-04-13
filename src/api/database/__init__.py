@@ -1,1 +1,1 @@
-from .db import database, metadata, create_all_tables
+from .db import create_all_tables, engine

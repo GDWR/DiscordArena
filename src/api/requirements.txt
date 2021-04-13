@@ -2,4 +2,4 @@ fastapi~=0.63.0
 uvicorn~=0.13.4
 orm~=0.1.5
 asyncpg~=0.22.0
-psycopg2~=2.8.6
+sqlalchemy[async]~=1.4.7

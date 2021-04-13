@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-import orm
 from datetime import datetime
 from pydantic import BaseModel
+from sqlalchemy import Column, Integer, String, Date, BigInteger
 
-from database.db import metadata, database
+from database.db import Base
 
 
 class PlayerDTO(BaseModel):
@@ -21,11 +21,9 @@ class PlayerDTO(BaseModel):
         )
 
 
-class PlayerDB(orm.Model):
+class PlayerDB(Base):
     __tablename__ = "player"
-    __metadata__ = metadata
-    __database__ = database
 
-    id = orm.Integer(primary_key=True)
-    display_name = orm.String(max_length=100)
-    join_date = orm.DateTime()
+    id = Column(BigInteger, primary_key=True)
+    display_name = Column(String)
+    join_date = Column(Date)

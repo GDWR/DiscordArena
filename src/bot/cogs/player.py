@@ -1,4 +1,3 @@
-import aiohttp
 from aiohttp import ClientResponseError
 from discord.ext.commands import Context, Cog, command
 

@@ -8,6 +8,7 @@ from database.db import Base
 
 
 class PlayerDTO(BaseModel):
+    """The base player model for serialization and deserialization with JSON"""
     id: int
     display_name: str
     join_date: datetime
@@ -22,6 +23,7 @@ class PlayerDTO(BaseModel):
 
 
 class PlayerDB(Base):
+    """The player class used to help interact with `players` table in the database"""
     __tablename__ = "player"
 
     id = Column(BigInteger, primary_key=True)

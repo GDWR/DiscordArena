@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from pydantic import BaseModel
-from sqlalchemy import Column, Integer, String, Date, BigInteger
+from sqlalchemy import Column, Integer, String, DateTime, BigInteger
 
 from database.db import Base
 
@@ -26,4 +26,4 @@ class PlayerDB(Base):
 
     id = Column(BigInteger, primary_key=True)
     display_name = Column(String)
-    join_date = Column(Date)
+    join_date = Column(DateTime)

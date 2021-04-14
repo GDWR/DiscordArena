@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from pydantic import BaseModel
-from sqlalchemy import Column, Integer, String, Date, BigInteger
+from sqlalchemy import Column, String, Date, BigInteger
 
 from database.db import Base
 

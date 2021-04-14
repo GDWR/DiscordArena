@@ -20,8 +20,10 @@ async def get_session() -> sessionmaker:
 
 @router.get("/player/{_id}", response_model=PlayerDTO)
 async def get_player(_id: int, session: sessionmaker = Depends(get_session)) -> PlayerDTO:
-    result = await session.execute(select(PlayerDB).order_by(PlayerDB.id))
-    first = result.scalars().first()
+    async with session() as sess:
+        async with sess.begin():
+            result = await sess.execute(select(PlayerDB).order_by(PlayerDB.id))
+            first = result.scalars().first()
 
     return PlayerDTO.from_db(first)
 

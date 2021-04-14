@@ -52,7 +52,14 @@ python -m api
 ```cmd
 pip install -r src/api/requirements.txt
 ```
-2. Run the bot with
+2. Add the necessary environment variables in your local `.env`
+These can be found in `src/bot/.env.example` and are listed below as well:
+
+```
+TOKEN=
+API_URL=
+```
+3. Run the bot with
 ```cmd
 python -m bot
 ```

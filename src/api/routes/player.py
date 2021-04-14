@@ -40,7 +40,7 @@ async def new_player(id: int, display_name: str, session: sessionmaker = Depends
         try:
             async with sess.begin():
                 sess.add(player)
-        except IntegrityError as e:
+        except IntegrityError:
             raise HTTPException(status_code=400, detail="Player already exists.")
 
     return PlayerDTO.from_db(player)

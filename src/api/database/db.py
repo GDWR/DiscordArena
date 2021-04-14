@@ -3,7 +3,9 @@ from sqlalchemy.ext.asyncio import create_async_engine
 
 Base = declarative_base()
 
-engine = create_async_engine("postgresql+asyncpg://postgres:postgres@localhost/postgres")
+engine = create_async_engine(
+    "postgresql+asyncpg://postgres:postgres@localhost/postgres"
+)
 
 
 async def create_all_tables():

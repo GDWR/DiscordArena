@@ -11,4 +11,3 @@ class ArenaBot(Bot):
     @staticmethod
     async def on_ready():
         print("Hi, I am here")
-

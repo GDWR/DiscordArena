@@ -10,3 +10,6 @@ class ArenaBot(Bot):
 
     async def on_ready(self):
         print(f"Logged in as {self.user}")
+    
+    async def on_disconnect(self):
+        await self.session.close()

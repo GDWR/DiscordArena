@@ -8,6 +8,8 @@ class ArenaBot(Bot):
 
         self.session = aiohttp.ClientSession()
 
-    @staticmethod
-    async def on_ready():
-        print("Hi, I am here")
+    async def on_ready(self):
+        print(f"Logged in as {self.user}")
+    
+    async def on_disconnect(self):
+        await self.session.close()

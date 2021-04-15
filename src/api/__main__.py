@@ -16,7 +16,6 @@ async def _start_up():
     await create_all_tables()
 
 
-
 @app.on_event("shutdown")
 async def _shutdown_event():
     await engine.disconnect()

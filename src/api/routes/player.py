@@ -21,9 +21,10 @@ async def get_session() -> sessionmaker:
 
 @router.get("/player/{_id}", response_model=PlayerDTO)
 async def get_player(_id: int, session: sessionmaker = Depends(get_session)) -> PlayerDTO:
-    """Gets a player and returns it to the user"""
-    result = await session.execute(select(PlayerDB).order_by(PlayerDB.id))
-    first = result.scalars().first()
+    async with session() as sess:
+        async with sess.begin():
+            result = await sess.execute(select(PlayerDB).order_by(PlayerDB.id))
+            first = result.scalars().first()
 
     return PlayerDTO.from_db(first)
 
@@ -41,7 +42,7 @@ async def new_player(id: int, display_name: str, session: sessionmaker = Depends
         try:
             async with sess.begin():
                 sess.add(player)
-        except IntegrityError as e:
+        except IntegrityError:
             raise HTTPException(status_code=400, detail="Player already exists.")
 
     return PlayerDTO.from_db(player)

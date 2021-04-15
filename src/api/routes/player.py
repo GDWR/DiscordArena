@@ -13,6 +13,7 @@ router = APIRouter()
 
 
 async def get_session() -> sessionmaker:
+    """Provides the database session"""
     yield sessionmaker(
         engine, expire_on_commit=False, class_=AsyncSession
     )
@@ -30,6 +31,7 @@ async def get_player(_id: int, session: sessionmaker = Depends(get_session)) -> 
 
 @router.post("/player", response_model=PlayerDTO)
 async def new_player(id: int, display_name: str, session: sessionmaker = Depends(get_session)) -> PlayerDTO:
+    """Adds a new player to the database and returns it"""
     player = PlayerDB(
         id=id,
         display_name=display_name,

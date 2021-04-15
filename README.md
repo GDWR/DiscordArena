@@ -15,13 +15,30 @@ Creating a Discord Game with a website
 <br>
 
 
-# Development setup
+## Development Setup
 Using: `Python 3.9`
 
-### Run Api
-`pip install -r api/requirements` Install requirements \
-`docker-compose up` Start a development database \
-`python -m api` Run Api
+_Prerequisite: [Install Docker](https://docs.docker.com/install) on your local environment._
+
+### Run API
+1. Install the necessary python packages with
+```cmd
+pip install -r src/api/requirements.txt
+```
+2. Add the necessary environment variables in your local `.env`
+These can be found in `src/api/.env.example` and are listed below as well:
+
+```
+DATABASE_URL=
+```
+3. Start a development database with
+```cmd
+docker-compose up
+```
+4. Run the api with
+```cmd
+python -m api
+```
 
 #### Default Postgres Settings 
 `Username`: `postgres` \
@@ -31,8 +48,21 @@ Using: `Python 3.9`
 
 ### Run Bot
 [Bot README.md](src/bot/README.md) \
-`pip install -r bot/requirements` Install requirements\
-`python -m bot` Run Bot
+1. Install the necessary python packages with
+```cmd
+pip install -r src/api/requirements.txt
+```
+2. Add the necessary environment variables in your local `.env`
+These can be found in `src/bot/.env.example` and are listed below as well:
+
+```
+TOKEN=
+API_URL=
+```
+3. Run the bot with
+```cmd
+python -m bot
+```
 
 
 

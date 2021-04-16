@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Rarity(Enum):
     Poor: list[float] = [50.077, 27.337, 16.916, 4.787, 0.815, 0.066, 0.002]
     Common: list[float] = [27.738, 49.889, 16.781, 4.732, 0.777, 0.078, 0.005]

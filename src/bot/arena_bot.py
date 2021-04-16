@@ -1,5 +1,7 @@
 import aiohttp
 from discord.ext.commands import Bot
+from glob import glob
+from pathlib import Path
 
 
 class ArenaBot(Bot):
@@ -13,3 +15,13 @@ class ArenaBot(Bot):
     
     async def on_disconnect(self):
         await self.session.close()
+    
+    @classmethod
+    def create(cls) -> 'ArenaBot':
+        bot = cls(
+            command_prefix='!'
+        )
+        for file in map(Path, glob("cogs/*.py")):
+            bot.load_extension(f"cogs.{file.stem}")
+
+        return bot

@@ -1,15 +1,10 @@
-from glob import glob
-from pathlib import Path
 from constants import environment
 
 from arena_bot import ArenaBot
 
+def main() -> None:
+    bot = ArenaBot.create()
+    bot.run(environment.TOKEN)
 
-bot = ArenaBot(command_prefix="!")
-
-
-for file in map(Path, glob("bot/cogs/*.py")):
-    bot.load_extension(f"cogs.{file.stem}")
-
-
-bot.run(environment.TOKEN)
+if __name__ == "__main__":
+    main()

@@ -1,6 +1,6 @@
-from constants import environment
+from .constants import environment
 
-from arena_bot import ArenaBot
+from .arena_bot import ArenaBot
 
 def main() -> None:
     bot = ArenaBot.create()

@@ -2,7 +2,7 @@ from aiohttp import ClientResponseError
 from discord.ext.commands import Context, Cog, command
 
 from constants import environment
-from arena_bot import ArenaBot
+from ..arena_bot import ArenaBot
 
 
 class Player(Cog):

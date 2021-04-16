@@ -21,7 +21,7 @@ class ArenaBot(Bot):
         bot = cls(
             command_prefix='!'
         )
-        for file in map(Path, glob("cogs/*.py")):
+        for file in map(Path, glob(".cogs/*.py")):
             bot.load_extension(f"cogs.{file.stem}")
 
         return bot

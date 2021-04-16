@@ -5,8 +5,9 @@ from dotenv import load_dotenv
 
 def load_env_dev() -> None:
     """Loads environment variables if application is being run in the development environment"""
-    if os.getenv("ENVIRONMENT") == None:
+    if os.getenv("ENVIRONMENT") is None:
         load_dotenv()
+
 
 def setting(name: str, default: Any = None) -> str:
     """Retrieves an environment variable and if it does not exist, throws an `EnvironmentError`"""

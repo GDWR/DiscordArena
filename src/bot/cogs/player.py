@@ -1,5 +1,7 @@
 from aiohttp import ClientResponseError
-from discord.ext.commands import Context, Cog, command
+from discord.ext.commands import Cog
+from discord_slash.cog_ext import cog_slash
+from discord_slash import SlashContext
 
 from constants import environment
 from arena_bot import ArenaBot
@@ -10,8 +12,8 @@ class Player(Cog):
         self.bot = bot
         self._api_url = f"http://{environment.API_URL}"
 
-    @command()
-    async def join(self, ctx: Context):
+    @cog_slash(name="join", description="Register Your Account.")
+    async def join(self, ctx: SlashContext):
         params = {
             "id": ctx.author.id,
             "display_name": ctx.author.display_name

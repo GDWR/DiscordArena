@@ -1,5 +1,5 @@
 import sqlalchemy
-from api.constants import DATABASE_URL
+from constants import DATABASE_URL
 from databases import Database
 
 database = Database(DATABASE_URL)

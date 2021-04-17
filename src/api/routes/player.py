@@ -1,4 +1,4 @@
-from api.models import PlayerIn, Player, PlayerTable
+from models import PlayerIn, Player, PlayerTable
 from fastapi import APIRouter
 
 router = APIRouter()

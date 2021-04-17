@@ -1,8 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
 
-from api.routes import player_router
-from api.database import create_all_tables, database as db
+from routes import player_router
+from database import create_all_tables, database as db
 
 app = FastAPI()
 

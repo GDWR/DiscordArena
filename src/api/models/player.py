@@ -3,8 +3,8 @@ from __future__ import annotations
 import datetime
 
 import orm
-from api.database.db import database as db
-from api.database.db import metadata
+from database.db import database as db
+from database.db import metadata
 from pydantic import BaseModel, Field
 
 

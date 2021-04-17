@@ -39,7 +39,7 @@ docker-compose up
 ```
 4. Run the api with
 ```cmd
-python -m api
+python api
 ```
 
 #### Default Postgres Settings 
@@ -71,7 +71,7 @@ cd ..
 ```
 5. Run the bot with
 ```cmd
-python -m bot
+python bot
 ```
 
 

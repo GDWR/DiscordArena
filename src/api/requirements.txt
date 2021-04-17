@@ -1,3 +1,4 @@
+asyncpg==0.22.0
 fastapi==0.63.0
 greenlet==1.0.0
 importlib-metadata==3.10.1
@@ -6,4 +7,5 @@ python-dotenv==0.17.0
 SQLAlchemy==1.4.7
 starlette==0.13.6
 typing-extensions==3.7.4.3
+uvicorn==0.13.4
 zipp==3.4.1

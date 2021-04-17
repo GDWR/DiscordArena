@@ -1,9 +1,11 @@
-from constants import DATABASE_URL
+from config import DATABASE_HOST, DATABASE_DB, DATABASE_USERNAME, DATABASE_PASSWORD
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
-engine = create_async_engine(DATABASE_URL)
+engine = create_async_engine(
+    f"postgresql+asyncpg://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOST}/{DATABASE_DB}"
+)
 
 
 async def create_all_tables():

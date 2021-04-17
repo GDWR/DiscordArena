@@ -1,1 +1,1 @@
-from .environment import setting
+from .setting import setting

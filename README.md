@@ -1,9 +1,11 @@
 
 
-<img src="assets/Avatar.png" width="75" height="75"> 
+<img src="assets/Avatar.png" width="175" height="175"> 
 
 # DiscordArena 
 Creating a Discord Game with a website
+
+[![Linting](https://github.com/GDWR/DiscordArena/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/GDWR/DiscordArena/actions/workflows/linting.yml)
 
 <img src="assets/classes/Bard.png" width="50" height="50"> <img src="assets/classes/Blacksmith.png" width="50" height="50"> 
 <img src="assets/classes/Druid.png" width="50" height="50"> <img src="assets/classes/Mage.png" width="50" height="50"> 
@@ -15,13 +17,30 @@ Creating a Discord Game with a website
 <br>
 
 
-# Development setup
+## Development Setup
 Using: `Python 3.9`
 
-### Run Api
-`pip install -r api/requirements` Install requirements \
-`docker-compose up` Start a development database \
-`python -m api` Run Api
+_Prerequisite: [Install Docker](https://docs.docker.com/install) on your local environment._
+
+### Run API
+1. Install the necessary python packages with
+```cmd
+pip install -r src/api/requirements.txt
+```
+2. Add the necessary environment variables in your local `.env`
+These can be found in `src/api/.env.example` and are listed below as well:
+
+```
+DATABASE_URL=
+```
+3. Start a development database with
+```cmd
+docker-compose up
+```
+4. Run the api with
+```cmd
+python api
+```
 
 #### Default Postgres Settings 
 `Username`: `postgres` \
@@ -31,8 +50,29 @@ Using: `Python 3.9`
 
 ### Run Bot
 [Bot README.md](src/bot/README.md) \
-`pip install -r bot/requirements` Install requirements\
-`python -m bot` Run Bot
+1. Navigate into the `src/bot` directory with
+```cmd
+cd src/bot
+```
+2. Install the necessary python packages with
+```cmd
+pip install -r requirements.txt
+```
+3. Add the necessary environment variables in your local `.env`
+These can be found in `src/bot/.env.example` and are listed below as well:
+
+```
+TOKEN=
+API_URL=
+```
+4. Navigate back into the `src` directory with
+```cmd
+cd ..
+```
+5. Run the bot with
+```cmd
+python bot
+```
 
 
 

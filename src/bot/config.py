@@ -1,9 +1,11 @@
-from os import environ
+import os
+from dotenv import load_dotenv
 
-TOKEN = environ.get("TOKEN")
-if not TOKEN:
-    raise EnvironmentError("Missing Environment Variable: TOKEN")
+from utils import setting
 
-API_URL = environ.get("API_URL")
-if not API_URL:
-    raise EnvironmentError("Missing Environment Variable: API_URL")
+
+if os.getenv("ENVIRONMENT") is None:
+    load_dotenv()
+
+TOKEN = setting("TOKEN", required=True)
+API_URL = setting("API_URL", "localhost:5432")

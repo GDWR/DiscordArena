@@ -1,15 +1,10 @@
-from glob import glob
-from pathlib import Path
+from config import TOKEN
+from discord_slash import SlashCommand
 
-import config
 from arena_bot import ArenaBot
 
+bot = ArenaBot.create()
+SlashCommand(bot, sync_commands=True, override_type=True)
 
-bot = ArenaBot(command_prefix="!")
-
-
-for file in map(Path, glob("bot/cogs/*.py")):
-    bot.load_extension(f"cogs.{file.stem}")
-
-
-bot.run(config.TOKEN)
+bot.load_extensions()
+bot.run(TOKEN)

@@ -1,11 +1,11 @@
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.ext.asyncio import create_async_engine
+import sqlalchemy
+from config import DATABASE_USERNAME, DATABASE_HOST, DATABASE_DB, DATABASE_PASSWORD
+from databases import Database
 
-Base = declarative_base()
+database = Database(f"postgresql+asyncpg://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOST}/{DATABASE_DB}")
+metadata = sqlalchemy.MetaData()
 
-engine = create_async_engine("postgresql+asyncpg://postgres:postgres@localhost/postgres")
 
-
-async def create_all_tables():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+def create_all_tables():
+    engine = sqlalchemy.create_engine(str(database.url))
+    metadata.create_all(engine)

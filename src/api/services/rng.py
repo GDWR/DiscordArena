@@ -25,5 +25,9 @@ class RNG:
             Rarity.Mythical,
         ]
 
-    def roll(self, k: int = 1) -> Rarity:
+    def roll(self, k: int = 1) -> list[Rarity]:
+        """
+        :param k: The amount of times to roll
+        :return: The rarities rolled
+        """
         return choices(self.rewards, self.weights, k=k)

@@ -1,8 +1,8 @@
 import sqlalchemy
-from constants import DATABASE_URL
+from config import DATABASE_USERNAME, DATABASE_HOST, DATABASE_DB, DATABASE_PASSWORD
 from databases import Database
 
-database = Database(DATABASE_URL)
+database = Database(f"postgresql+asyncpg://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOST}/{DATABASE_DB}")
 metadata = sqlalchemy.MetaData()
 
 

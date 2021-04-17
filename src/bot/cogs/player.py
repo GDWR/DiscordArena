@@ -3,14 +3,14 @@ from discord.ext.commands import Cog
 from discord_slash.cog_ext import cog_slash
 from discord_slash import SlashContext
 
-from bot.constants import environment
-from bot.arena_bot import ArenaBot
+from arena_bot import ArenaBot
+from config import API_URL
 
 
 class Player(Cog):
     def __init__(self, bot: ArenaBot):
         self.bot = bot
-        self._api_url = f"http://{environment.API_URL}"
+        self._api_url = f"http://{API_URL}"
 
     @cog_slash(name="join", description="Register Your Account.")
     async def join(self, ctx: SlashContext) -> None:

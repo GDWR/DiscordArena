@@ -21,7 +21,7 @@ class ArenaBot(Bot):
 
     def load_extensions(self) -> None:
         for file in map(Path, glob("bot/cogs/*.py")):
-            self.load_extension(f"bot.cogs.{file.stem}")
+            self.load_extension(f"cogs.{file.stem}")
 
     @classmethod
     def create(cls) -> ArenaBot:

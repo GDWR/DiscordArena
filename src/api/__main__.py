@@ -1,6 +1,5 @@
 import uvicorn
 from fastapi import FastAPI
-
 from routes import player_router
 from database import create_all_tables, database as db
 

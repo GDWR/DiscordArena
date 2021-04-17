@@ -1,7 +1,10 @@
-import aiohttp
-from discord.ext.commands import Bot
+from __future__ import annotations
+
 from glob import glob
 from pathlib import Path
+
+import aiohttp
+from discord.ext.commands import Bot
 
 
 class ArenaBot(Bot):
@@ -16,7 +19,7 @@ class ArenaBot(Bot):
         await self.session.close()
 
     @classmethod
-    def create(cls) -> 'ArenaBot':
+    def create(cls) -> ArenaBot:
         bot = cls(
             command_prefix='!'
         )

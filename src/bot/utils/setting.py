@@ -8,7 +8,7 @@ def setting(name: str, default: Any = None, *, required: bool = False) -> str:
     Default and Required cannot be set at the same time.
 
     :param name: Environment variable name
-    :param default: Value to use if variable is not assigned in environment
+    :param default: Value to use if variable is not assigned in environment, this will be converted to string
     :param required: If the variable is not assigned in teh environment, raise an error
     :return:
     """
@@ -21,4 +21,4 @@ def setting(name: str, default: Any = None, *, required: bool = False) -> str:
     env_var = os.getenv(name, default)
     if required and env_var is None:
         raise EnvironmentError(f'Missing environment variable: {name}')
-    return env_var
+    return str(env_var)

@@ -1,1 +1,1 @@
-from .player import PlayerDB, PlayerDTO
+from .player import PlayerIn, Player, PlayerTable

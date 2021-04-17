@@ -48,18 +48,26 @@ python -m api
 
 ### Run Bot
 [Bot README.md](src/bot/README.md) \
-1. Install the necessary python packages with
+1. Navigate into the `src/bot` directory with
 ```cmd
-pip install -r src/api/requirements.txt
+cd src/bot
 ```
-2. Add the necessary environment variables in your local `.env`
+2. Install the necessary python packages with
+```cmd
+pip install -r requirements.txt
+```
+3. Add the necessary environment variables in your local `.env`
 These can be found in `src/bot/.env.example` and are listed below as well:
 
 ```
 TOKEN=
 API_URL=
 ```
-3. Run the bot with
+4. Navigate back into the `src` directory with
+```cmd
+cd ..
+```
+5. Run the bot with
 ```cmd
 python -m bot
 ```

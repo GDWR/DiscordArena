@@ -3,8 +3,8 @@ from discord.ext.commands import Cog
 from discord_slash.cog_ext import cog_slash
 from discord_slash import SlashContext
 
-from constants import environment
-from arena_bot import ArenaBot
+from bot.constants import environment
+from bot.arena_bot import ArenaBot
 
 
 class Player(Cog):
@@ -13,7 +13,7 @@ class Player(Cog):
         self._api_url = f"http://{environment.API_URL}"
 
     @cog_slash(name="join", description="Register Your Account.")
-    async def join(self, ctx: SlashContext):
+    async def join(self, ctx: SlashContext) -> None:
         params = {
             "id": ctx.author.id,
             "display_name": ctx.author.display_name
@@ -28,5 +28,9 @@ class Player(Cog):
                 await ctx.send("> You already exist")
 
 
-def setup(bot: ArenaBot):
+def setup(bot: ArenaBot) -> None:
     bot.add_cog(Player(bot))
+
+
+def teardown(bot: ArenaBot) -> None:
+    bot.remove_cog('Player')

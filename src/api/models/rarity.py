@@ -2,13 +2,13 @@ from enum import Enum
 
 
 class Rarity(Enum):
-    Poor: list[float] = 1
-    Common: list[float] = 2
-    Uncommon: list[float] = 3
-    Rare: list[float] = 4
-    Epic: list[float] = 5
-    Legendary: list[float] = 6
-    Mythical: list[float] = 7
+    Poor: int = 1
+    Common: int = 2
+    Uncommon: int = 3
+    Rare: int = 4
+    Epic: int = 5
+    Legendary: int = 6
+    Mythical: int = 7
 
     @property
     def weights(self) -> list[float]:

@@ -4,7 +4,7 @@ from typing import Union
 
 
 class RNG:
-    def __init__(self, rarity_weights: Union[Rarity, list[int]] = None):
+    def __init__(self, rarity_weights: Union[Rarity, list[float]] = None):
         if rarity_weights is None:
             self.weights = Rarity.Poor.weights
 

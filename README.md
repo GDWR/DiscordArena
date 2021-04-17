@@ -1,6 +1,6 @@
 
 
-<img src="assets/Avatar.png" width="75" height="75"> 
+<img src="assets/Avatar.png" width="175" height="175"> 
 
 [![Linting](https://github.com/GDWR/DiscordArena/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/GDWR/DiscordArena/actions/workflows/linting.yml)
 

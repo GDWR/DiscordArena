@@ -1,31 +1,30 @@
 from __future__ import annotations
 
-from datetime import datetime
-from pydantic import BaseModel
-from sqlalchemy import Column, String, Date, BigInteger
+import datetime
 
-from database.db import Base
+import orm
+from api.database.db import database as db
+from api.database.db import metadata
+from pydantic import BaseModel, Field
 
 
-class PlayerDTO(BaseModel):
-    """The base player model for serialization and deserialization with JSON"""
+class PlayerTable(orm.Model):
+    """The player class used to help interact with `player` table in the database"""
+    __tablename__ = "player"
+    __database__ = db
+    __metadata__ = metadata
+
+    id = orm.Integer(primary_key=True, index=False)
+    display_name = orm.String(max_length=50)
+    join_date = orm.DateTime()
+
+
+class PlayerIn(BaseModel):
     id: int
     display_name: str
-    join_date: datetime
-
-    @classmethod
-    def from_db(cls, player: PlayerDB) -> PlayerDTO:
-        return cls(
-            id=player.id,
-            display_name=player.display_name,
-            join_date=player.join_date
-        )
 
 
-class PlayerDB(Base):
-    """The player class used to help interact with `players` table in the database"""
-    __tablename__ = "player"
-
-    id = Column(BigInteger, primary_key=True)
-    display_name = Column(String)
-    join_date = Column(Date)
+class PlayerOut(BaseModel):
+    id: int
+    display_name: str
+    join_date: datetime.datetime = Field(default_factory=datetime.datetime.utcnow)

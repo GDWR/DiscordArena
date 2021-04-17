@@ -1,4 +1,4 @@
-from discord.ext.commands import Cog, group, ExtensionNotFound, ExtensionAlreadyLoaded, NoEntryPointError, \
+from discord.ext.commands import Cog, group, Context,ExtensionNotFound, ExtensionAlreadyLoaded, NoEntryPointError, \
     ExtensionFailed, ExtensionNotLoaded
 
 
@@ -9,11 +9,11 @@ class CogManager(Cog):
             ExtensionNotFound, ExtensionAlreadyLoaded, NoEntryPointError, ExtensionFailed, ExtensionNotLoaded)
 
     @group()
-    async def cog(self, ctx):
+    async def cog(self, ctx: Context):
         await ctx.send("> Please use the following format `!` `cog` `<extension>` '<package>'(Optional)")
 
     @cog.command()
-    async def reload(self, ctx, extension: str) -> None:
+    async def reload(self, ctx: Context, extension: str) -> None:
         try:
             await self.bot.reload_extension(f"cogs.{extension}")
             await ctx.send(f"> 🟢 {extension.capitalize()} Reloaded")
@@ -21,7 +21,7 @@ class CogManager(Cog):
             await ctx.send(f"> {extension} {exception}")
 
     @cog.command()
-    async def load(self, ctx, extension: str) -> None:
+    async def load(self, ctx: Context, extension: str) -> None:
         try:
             await self.bot.load_extension(f"cogs.{extension}")
             await ctx.send(f"> 🟢 {extension.capitalize()} Loaded")
@@ -29,7 +29,7 @@ class CogManager(Cog):
             await ctx.send(f"> {extension} {exception}")
 
     @cog.command()
-    async def unload(self, ctx, extension: str) -> None:
+    async def unload(self, ctx: Context, extension: str) -> None:
         try:
             await self.bot.unload_extension(f"cogs.{extension}")
             await ctx.send(f"> 🟢 {extension.capitalize()} Unloaded")

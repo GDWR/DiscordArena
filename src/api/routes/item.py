@@ -1,19 +1,18 @@
-from models import PlayerIn, Player, PlayerTable
+from models import ItemIn, Item, ItemTable
 from fastapi import APIRouter
 
 router = APIRouter()
 
 
-@router.get("/player/{id}", response_model=Player)
-async def get_player(id: int) -> Player:
-    """Returns a player based on its discord id"""
-    retrieved_player = await PlayerTable.objects.get(id=id)
-    return Player(**dict(retrieved_player))
+@router.get("/items/{id}", response_model=Item)
+async def get_item(id: int) -> Item:
+    """Returns a item based on its id"""
+    retrieved_item = await ItemTable.objects.get(id=id)
+    return Item(**dict(retrieved_item))
 
 
-@router.post("/player", response_model=Player)
-async def new_player(player: PlayerIn) -> Player:
+@router.post("/items", response_model=Item)
+async def new_item(item: ItemIn) -> Item:
     """Adds a new player to the database and returns it"""
-    player_to_add = Player(**player.dict())
-    added_player = await PlayerTable.objects.create(**player_to_add.dict())
-    return Player(**dict(added_player))
+    added_item = await ItemTable.objects.create(**item.dict())
+    return Item(**dict(added_item))

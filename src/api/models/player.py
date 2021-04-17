@@ -24,7 +24,5 @@ class PlayerIn(BaseModel):
     display_name: str
 
 
-class PlayerOut(BaseModel):
-    id: int
-    display_name: str
+class Player(PlayerIn):
     join_date: datetime.datetime = Field(default_factory=datetime.datetime.utcnow)

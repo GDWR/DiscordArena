@@ -1,1 +1,1 @@
-from .player import PlayerIn, PlayerOut, PlayerTable
+from .player import PlayerIn, Player, PlayerTable

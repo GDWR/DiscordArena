@@ -14,6 +14,6 @@ async def get_player(id: int) -> Player:
 @router.post("/player", response_model=Player)
 async def new_player(player: PlayerIn) -> Player:
     """Adds a new player to the database and returns it"""
-    player_to_add = Player(**{**player.dict()})
+    player_to_add = Player(**player.dict())
     added_player = await PlayerTable.objects.create(**player_to_add.dict())
     return Player(**dict(added_player))

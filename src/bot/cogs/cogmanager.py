@@ -1,4 +1,4 @@
-from discord.ext.commands import Cog, group, Context,ExtensionNotFound, ExtensionAlreadyLoaded, NoEntryPointError, \
+from discord.ext.commands import Cog, group, Context, ExtensionNotFound, ExtensionAlreadyLoaded, NoEntryPointError, \
     ExtensionFailed, ExtensionNotLoaded
 
 

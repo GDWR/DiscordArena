@@ -24,7 +24,7 @@ class CogManager(Cog):
     async def load(self, ctx, extension: str) -> None:
         try:
             await self.bot.load_extension(f"cogs.{extension}")
-            await ctx.send(f"> 🟢 {extension.capitalize()} Reloaded")
+            await ctx.send(f"> 🟢 {extension.capitalize()} Loaded")
         except self.exceptions as exception:
             await ctx.send(f"> {extension} {exception}")
 
@@ -32,7 +32,7 @@ class CogManager(Cog):
     async def unload(self, ctx, extension: str) -> None:
         try:
             await self.bot.unload_extension(f"cogs.{extension}")
-            await ctx.send(f"> 🟢 {extension.capitalize()} Reloaded")
+            await ctx.send(f"> 🟢 {extension.capitalize()} Unloaded")
         except self.exceptions as exception:
             await ctx.send(f"> {extension} {exception}")
 

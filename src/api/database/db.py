@@ -10,5 +10,6 @@ engine = sqlalchemy.create_engine(str(database.url))
 def create_all_tables() -> None:
     metadata.create_all(engine)
 
+
 def drop_all_tables() -> None:
     metadata.drop_all(engine)

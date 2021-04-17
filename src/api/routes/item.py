@@ -16,10 +16,7 @@ async def get_item(id: int) -> Item:
 
 
 @router.get("/item", response_model=Page[Item])
-async def get_items(
-    owner_id: Optional[int] = None, 
-    rarity: Optional[int] = None
-):
+async def get_items(owner_id: Optional[int] = None, rarity: Optional[int] = None):
     """Gets items based on query parameters"""
     items_queryset = ItemTable.objects
     if owner_id:
@@ -28,7 +25,7 @@ async def get_items(
         )
     if rarity:
         items_queryset = items_queryset.filter(
-            rarity = int(rarity),
+            rarity=int(rarity),
         )
     page = await paginate(items_queryset)
     return page

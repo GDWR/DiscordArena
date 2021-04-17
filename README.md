@@ -1,11 +1,11 @@
 
 
-<img src="assets/Avatar.png" width="75" height="75"> 
-
-[![Linting](https://github.com/GDWR/DiscordArena/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/GDWR/DiscordArena/actions/workflows/linting.yml)
+<img src="assets/Avatar.png" width="175" height="175"> 
 
 # DiscordArena 
 Creating a Discord Game with a website
+
+[![Linting](https://github.com/GDWR/DiscordArena/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/GDWR/DiscordArena/actions/workflows/linting.yml)
 
 <img src="assets/classes/Bard.png" width="50" height="50"> <img src="assets/classes/Blacksmith.png" width="50" height="50"> 
 <img src="assets/classes/Druid.png" width="50" height="50"> <img src="assets/classes/Mage.png" width="50" height="50"> 

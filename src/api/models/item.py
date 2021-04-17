@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class ItemTable(orm.Model):
-    """The player class used to help interact with `player` table in the database"""
+    """The ItemTable class used to help interact with `item` table in the database"""
     __tablename__ = "item"
     __database__ = db
     __metadata__ = metadata
@@ -18,6 +18,7 @@ class ItemTable(orm.Model):
 
 
 class ItemIn(BaseModel):
+    """The base item input class"""
     name: str
     owner_id: int
     value: int
@@ -25,6 +26,7 @@ class ItemIn(BaseModel):
 
 
 class Item(ItemIn):
+    """The output item class"""
     id: int
 
     class Config:

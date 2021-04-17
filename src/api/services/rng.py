@@ -4,16 +4,16 @@ from typing import Union
 
 
 class RNG:
-    def __init__(self, weights: Union[Rarity, list[int]] = None):
-        if weights is None:
-            self.weights = Rarity.Poor.value
+    def __init__(self, rarity_weights: Union[Rarity, list[int]] = None):
+        if rarity_weights is None:
+            self.weights = Rarity.Poor.weights
 
         else:
-            if isinstance(weights, Rarity):
-                self.weights = weights.value
+            if isinstance(rarity_weights, Rarity):
+                self.weights = rarity_weights.weights
 
-            elif isinstance(weights, list):
-                self.weights = weights
+            elif isinstance(rarity_weights, list):
+                self.weights = rarity_weights
 
         self.rewards: list[Rarity] = [
             Rarity.Poor,

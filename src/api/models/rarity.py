@@ -2,16 +2,18 @@ from enum import Enum
 
 
 class Rarity(Enum):
-    Poor: int = 1
-    Common: int = 2
-    Uncommon: int = 3
-    Rare: int = 4
-    Epic: int = 5
-    Legendary: int = 6
-    Mythical: int = 7
+    """Represent the Rarity of Objects, these will be stored in the database."""
+    Poor = 1
+    Common = 2
+    Uncommon = 3
+    Rare = 4
+    Epic = 5
+    Legendary = 6
+    Mythical = 7
 
     @property
     def weights(self) -> list[float]:
+        """Get the weights of the Rarity for RNG."""
         if self.value is Rarity.Poor:
             return [50.077, 27.337, 16.916, 4.787, 0.815, 0.066, 0.002]
 

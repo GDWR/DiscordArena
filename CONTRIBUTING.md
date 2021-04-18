@@ -16,4 +16,5 @@ stage. If this fails your pull request will not be accepted.
 
 This can be ran by using while in the root of the repo.
 
+`pip3 install flake8 flake8-docstrings`
 `python3 -m flake8 src/api`

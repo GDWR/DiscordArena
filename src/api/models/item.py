@@ -28,6 +28,3 @@ class ItemIn(BaseModel):
 class Item(ItemIn):
     """The output item class"""
     id: int
-
-    class Config:
-        orm_mode = True

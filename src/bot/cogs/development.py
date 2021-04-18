@@ -16,7 +16,6 @@ class Development(Cog):
     """Cog that holds development tools, this isn't loaded in Production."""
     def __init__(self, bot: ArenaBot):
         self.bot = bot
-        self._api_url = API_URL
 
     @cog_slash(
         name="make",
@@ -59,7 +58,7 @@ class Development(Cog):
             "value": value,
             "rarity": rarity.value
         }
-        async with self.bot.session.post(f"{self._api_url}/item", json=item_data) as response:
+        async with self.bot.session.post(f"{API_URL}/item", json=item_data) as response:
             response.raise_for_status()
             data = await response.json()
             item_id = data.get("id")
@@ -103,7 +102,7 @@ class Development(Cog):
                 "value": value,
                 "rarity": rarity.value
             }
-            async with self.bot.session.post(f"{self._api_url}/item", json=item_data) as response:
+            async with self.bot.session.post(f"{API_URL}/item", json=item_data) as response:
                 response.raise_for_status()
                 data = await response.json()
                 item_id = data.get("id")

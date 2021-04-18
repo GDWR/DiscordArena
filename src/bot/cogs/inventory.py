@@ -18,7 +18,6 @@ class Inventory(Cog):
     """Cog holds Inventory commands to filter and/or view items in the game."""
     def __init__(self, bot: ArenaBot):
         self.bot = bot
-        self._api_url = API_URL
 
     @cog_slash(
         name="inventory",
@@ -53,7 +52,7 @@ class Inventory(Cog):
         if rarity:
             params["rarity"] = Rarity[rarity].value
 
-        async with self.bot.session.get(f"{self._api_url}/item", params=params) as response:
+        async with self.bot.session.get(f"{API_URL}/item", params=params) as response:
             response.raise_for_status()
             data = await response.json()
 
@@ -81,7 +80,7 @@ class Inventory(Cog):
     )
     async def get_item(self, ctx: SlashContext, item_id: int):
         """Get a item from the API using a item_id"""
-        async with self.bot.session.get(f"{self._api_url}/item/{item_id}") as response:
+        async with self.bot.session.get(f"{API_URL}/item/{item_id}") as response:
             if response.status == 404:
                 await ctx.send(f"> Item of ID {item_id} was not found.")
                 return

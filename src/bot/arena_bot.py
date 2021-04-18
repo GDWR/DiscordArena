@@ -12,7 +12,7 @@ from config import COMMAND_PREFIX
 
 class ArenaBot(Bot):
     """
-    Subclass of `discord.ext.Bot`
+    Subclass of `discord.ext.commands.Bot`
 
     This adds additional functionality:
      * aiohttp session
@@ -21,7 +21,7 @@ class ArenaBot(Bot):
     """
     instance = None
 
-    # flake8: noqa: C901
+    # flake8: noqa: D102
     def __new__(cls, *args, **kwargs):
         if cls.instance is None:
             cls.instance = super(ArenaBot, cls).__new__(cls)

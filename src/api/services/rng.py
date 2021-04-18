@@ -4,6 +4,21 @@ from typing import Union
 
 
 class RNG:
+    """
+    Class to be used when rolling for rarities.
+
+    It's weights can be changed during initalisation by passing in
+    a Rarity or a list of floats.
+    >>> rng = RNG()
+    >>> rng.roll() # Rolls using default weights
+    >>>
+    >>> rng = RNG(Rarity.Epic)
+    >>> rng.roll() # Rolls using weights tailored towards Epic Rarity
+    >>>
+    >>> rng = RNG([50.077, 27.337, 16.916, 4.787, 0.815, 0.066, 0.002])
+    >>> rng.roll() # Rolls using weights defined in the init.
+    """
+
     def __init__(self, rarity_weights: Union[Rarity, list[float]] = None):
         if rarity_weights is None:
             self.weights = Rarity.Poor.weights

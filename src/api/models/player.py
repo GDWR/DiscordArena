@@ -20,9 +20,11 @@ class PlayerTable(orm.Model):
 
 
 class PlayerIn(BaseModel):
+    """API model to represent the data sent when creating a new Player."""
     id: int
     display_name: str
 
 
 class Player(PlayerIn):
+    """Represent the data sent to a client from the API."""
     join_date: datetime.datetime = Field(default_factory=datetime.datetime.utcnow)

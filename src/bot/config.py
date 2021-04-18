@@ -9,3 +9,4 @@ if os.getenv("ENVIRONMENT") is None:
 
 TOKEN = setting("TOKEN", required=True)
 API_URL = setting("API_URL", "localhost:5432")
+COMMAND_PREFIX = setting("COMMAND_PREFIX", "!")

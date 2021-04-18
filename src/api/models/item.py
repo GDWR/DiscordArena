@@ -30,4 +30,5 @@ class Item(ItemIn):
     id: int
 
     class Config:
+        """Allows subclassing other orm.Models"""
         orm_mode = True

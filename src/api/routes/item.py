@@ -44,7 +44,7 @@ async def get_items(owner_id: Optional[int] = None, rarity: Optional[int] = None
 async def open_chest(owner_id: int, rarity: int):
     rng = RNG(Rarity(rarity))
     result: Rarity = rng.roll()[0]
-    weapon: str = choice(["Sword", "Sheild", "Bow", "Staff"])
+    weapon: str = choice(["Sword", "Shield", "Bow", "Staff"])
     item: ItemIn = ItemIn(
         name=weapon, owner_id=owner_id, value=10, rarity=result.value, type=1
     )

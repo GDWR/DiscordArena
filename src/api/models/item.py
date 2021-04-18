@@ -28,7 +28,3 @@ class ItemIn(BaseModel):
 class Item(ItemIn):
     """The output item class"""
     id: int
-
-    class Config:
-        """Allows subclassing other orm.Models"""
-        orm_mode = True

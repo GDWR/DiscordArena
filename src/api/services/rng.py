@@ -21,11 +21,11 @@ class RNG:
 
     def __init__(self, rarity_weights: Union[Rarity, list[float]] = None):
         if rarity_weights is None:
-            self.weights = Rarity.Poor.weights()
+            self.weights = Rarity.Poor.weights
 
         else:
             if isinstance(rarity_weights, Rarity):
-                self.weights = rarity_weights.weights()
+                self.weights = rarity_weights.weights
 
             elif isinstance(rarity_weights, list):
                 self.weights = rarity_weights

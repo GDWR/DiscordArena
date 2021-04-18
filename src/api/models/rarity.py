@@ -11,6 +11,7 @@ class Rarity(Enum):
     Legendary = 6
     Mythical = 7
 
+    @property
     def weights(self) -> list[float]:
         """Get the weights of the Rarity for RNG."""
         if self is Rarity.Poor:

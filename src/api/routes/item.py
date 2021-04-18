@@ -42,6 +42,7 @@ async def get_items(owner_id: Optional[int] = None, rarity: Optional[int] = None
 
 @router.post("/open_chest", response_model=Item)
 async def open_chest(owner_id: int, rarity: int):
+    """Opens a chest based on its rarity and gives the item to the owner"""
     rng = RNG(Rarity(rarity))
     result: Rarity = rng.roll()[0]
     weapon: str = choice(["Sword", "Shield", "Bow", "Staff"])

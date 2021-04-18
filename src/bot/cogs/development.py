@@ -9,6 +9,7 @@ from discord_slash.utils.manage_commands import create_option
 from arena_bot import ArenaBot
 from config import API_URL
 from constants.options import rarity_choices
+from models import Item
 from models.rarity import Rarity
 
 
@@ -91,6 +92,7 @@ class Development(Cog):
     )
     async def make_random_item(self, ctx: SlashContext, owner: Member, amount: int) -> None:
         """Make random items for a member"""
+        items = []
         for _ in range(int(amount)):
             name = "Test Item"
             value = random.randint(1, 1000)
@@ -105,13 +107,16 @@ class Development(Cog):
             async with self.bot.session.post(f"{API_URL}/item", json=item_data) as response:
                 response.raise_for_status()
                 data = await response.json()
-                item_id = data.get("id")
+                items.append(Item(**data))
 
-            embed = Embed(title=name, colour=rarity.colour)
-            embed.add_field(name="Item ID", value=str(item_id))
-            embed.add_field(name="Value", value=str(value))
-            embed.set_author(name=owner.display_name, icon_url=owner.avatar_url)
+        embed = Embed(title="__New Items__", colour=owner.colour)
 
+        for item in items:
+            embed.add_field(**item.embed_field)
+
+        embed.set_author(name=owner.display_name, icon_url=owner.avatar_url)
+
+        await ctx.send(embed=embed)
 
 def setup(bot: ArenaBot) -> None:
     """Add the cog"""

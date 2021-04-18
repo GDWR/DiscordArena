@@ -23,21 +23,45 @@ Using: `Python 3.9`
 _Prerequisite: [Install Docker](https://docs.docker.com/install) on your local environment._
 
 ### Run API
-1. Install the necessary python packages with
+1. Navigate into the `src/api` directory with
 ```cmd
-pip install -r src/api/requirements.txt
+cd src/api
 ```
-2. Add the necessary environment variables in your local `.env`
+2. Create a virtual environment `env` if there isn't one already with
+```cmd
+python -m venv env
+```
+3. Navigate into this virtual environment with
+- On MacOS and Linux
+```bash
+source env/bin/activate
+```
+- On Windows
+```cmd
+.\env\Scripts\activate
+```
+4. Install the necessary python packages with
+```cmd
+pip install -r requirements.txt
+```
+5. Add the necessary environment variables in your local `.env`
 These can be found in `src/api/.env.example` and are listed below as well:
 
 ```
-DATABASE_URL=
+DATABASE_URL=localhost
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=postgres
+DATABASE_DB=postgres
 ```
-3. Start a development database with
+6. Start a development database with
 ```cmd
 docker-compose up
 ```
-4. Run the api with
+7. Navigate back out into the `src` directory with
+```cmd
+cd ..
+``` 
+8. Run the api with
 ```cmd
 python api
 ```
@@ -54,7 +78,20 @@ python api
 ```cmd
 cd src/bot
 ```
-2. Install the necessary python packages with
+2. Create a virtual environment `env` if there isn't one already with
+```cmd
+python -m venv env
+```
+3. Navigate into this virtual environment with
+- On MacOS and Linux
+```bash
+source env/bin/activate
+```
+- On Windows
+```cmd
+.\env\Scripts\activate
+```
+4. Install the necessary python packages with
 ```cmd
 pip install -r requirements.txt
 ```

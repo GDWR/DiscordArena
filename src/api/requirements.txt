@@ -16,3 +16,4 @@ typesystem==0.2.4
 typing-extensions==3.7.4.3
 uvicorn==0.13.4
 zipp==3.4.1
+psycopg2==2.8.6

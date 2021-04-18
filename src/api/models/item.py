@@ -15,6 +15,7 @@ class ItemTable(orm.Model):
     owner_id = orm.Integer()
     value = orm.Integer()
     rarity = orm.Integer()
+    type = orm.Integer()
 
 
 class ItemIn(BaseModel):
@@ -23,6 +24,7 @@ class ItemIn(BaseModel):
     owner_id: int
     value: int
     rarity: int
+    type: int
 
 
 class Item(ItemIn):

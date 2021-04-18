@@ -118,6 +118,7 @@ class Development(Cog):
 
         await ctx.send(embed=embed)
 
+
 def setup(bot: ArenaBot) -> None:
     """Add the cog"""
     bot.add_cog(Development(bot))

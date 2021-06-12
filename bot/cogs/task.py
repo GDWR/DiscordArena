@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
-from typing import Optional, Union
 
-from discord import DiscordException, User, Member, Embed
+from discord import DiscordException
 from discord.ext.commands import Cog, Context, group, CommandInvokeError
 from orm import NoMatch
 
@@ -10,6 +9,7 @@ from models import Player, Task as TaskModel, TaskType
 
 
 class AlreadyOnTask(DiscordException):
+    """Error raised when a user attempts to start a task while already on one."""""
     def __init__(self, task: TaskModel):
         self.task = task
 
@@ -21,6 +21,7 @@ class Task(Cog):
         self.bot = bot
 
     async def cog_command_error(self, ctx: Context, error: CommandInvokeError) -> None:
+        """Handle errors within the cog"""
         if isinstance(error.original, AlreadyOnTask):
             task = error.original.task
             embed = await task.embed

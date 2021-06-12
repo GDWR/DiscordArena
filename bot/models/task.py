@@ -31,6 +31,7 @@ class Task(Model):
 
     @property
     async def embed(self) -> Embed:
+        """Get the embed representing the task."""
         return Embed(
             title=self.task_type.name,
             description=f"Completes at {self.completion_date}",

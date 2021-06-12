@@ -11,6 +11,7 @@ class TaskType(Enum):
 
     @property
     def colour(self) -> int:
+        """Get the associated colour of a Task."""
         if self is TaskType.Hunt:
             return Colour.dark_gold()
         elif self is TaskType.Mine:

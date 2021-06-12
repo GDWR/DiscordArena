@@ -9,6 +9,10 @@ To run the docker-compose for development I'd recommend setting up a docker-comp
 [Pycharm](https://www.jetbrains.com/help/pycharm/using-docker-compose-as-a-remote-interpreter.html). I'm pretty sure 
 VSCode also has this feature but I've never used it, if you wish to update this with a useful link. Just PR it.
 
+### Pycharm Configurations
+Included in this project are Pycharm configurations file. These should automatically be detected and used by Pycharm for
+ease of development. All that is required is a docker-compose interpreter.
+
 ### Running the bot
 Within your Docker workspace you can use poetry to run the bot, run linting and run tests. Below are listed the commands
 that you should get familiar with.

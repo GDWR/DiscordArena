@@ -2,11 +2,9 @@ version: "3"
 
 services:
   workspace:
-    build:
-      context: bot
-      dockerfile: dev.dockerfile
+    build: .
     volumes:
-      - "./bot:/workspace/bot"
+      - ".:/workspace"
 
   database:
     image: postgres

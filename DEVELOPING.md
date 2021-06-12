@@ -13,8 +13,9 @@ VSCode also has this feature but I've never used it, if you wish to update this 
 Within your Docker workspace you can use poetry to run the bot, run linting and run tests. Below are listed the commands
 that you should get familiar with.
 
-
-
+You must have a `.env` file at the root of the project with atleast the `TOKEN` variable set. Below are the other 
+environment variables you can change. There is a [.env.example](.env.example) file that contains a environment file 
+without the values filled in.
 
 Environment Variables
 ----------------------

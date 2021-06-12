@@ -19,4 +19,4 @@ This can be ran by using while in the root of the repo.
 `python3 -m flake8 src/api`
 
 ### Development Environment
-For documentation on the developing environment see [DEVELOPING](DEVELOPING.md)
+For documentation on the developing environment see [here](DEVELOPING.md)

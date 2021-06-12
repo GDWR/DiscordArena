@@ -15,7 +15,6 @@ class Item(Cog):
         await ctx.send("Item...")
 
 
-
 def setup(bot: ArenaBot) -> None:
     """Add the cog to the bot"""
     bot.add_cog(Item(bot))

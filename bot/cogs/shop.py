@@ -17,10 +17,12 @@ class Shop(Cog):
 
     @shop.command()
     async def buy(self, ctx: Context) -> None:
+        """Buy an item."""
         await ctx.send("Buy...")
 
     @shop.command()
     async def sell(self, ctx: Context) -> None:
+        """Sell an item."""
         await ctx.send("Sell...")
 
 

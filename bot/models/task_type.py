@@ -8,6 +8,7 @@ class TaskType(Enum):
     Hunt = 1
     Mine = 2
     Gather = 3
+    Lumber = 4
 
     @property
     def colour(self) -> int:
@@ -18,5 +19,7 @@ class TaskType(Enum):
             return Colour.dark_gray()
         elif self is TaskType.Gather:
             return Colour.blue()
+        elif self is TaskType.Lumber:
+            return Colour.from_rgb(165, 42, 42)  # Brown
         else:
             return Colour.blurple()

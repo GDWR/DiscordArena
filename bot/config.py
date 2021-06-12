@@ -9,7 +9,7 @@ if getenv("ENVIRONMENT") is None:
 
 TOKEN = setting("TOKEN", required=True)
 API_URL = setting("API_URL", "localhost:5432")
-COMMAND_PREFIX = setting("COMMAND_PREFIX", "!")
+COMMAND_PREFIX = setting("COMMAND_PREFIX", "a!")
 DATABASE_HOST = setting("DATABASE_HOST", "database")
 DATABASE_PORT = setting("DATABASE_PORT", 5432, _type=int)
 DATABASE_USER = setting("DATABASE_USER", "postgres")

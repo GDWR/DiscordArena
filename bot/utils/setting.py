@@ -1,8 +1,10 @@
 from os import getenv
-from typing import Any, Optional, Type
+from typing import TypeVar, Type, Optional
+
+T = TypeVar("T")
 
 
-def setting(name: str, default: Any = None, *, required: bool = False, _type: Optional[Type] = None) -> str:
+def setting(name: str, default: Optional[T] = None, *, required: bool = False, _type: Type[T] = str) -> T:
     """
     Get a setting from the environment.
     Default and Required cannot be set at the same time.
@@ -10,8 +12,8 @@ def setting(name: str, default: Any = None, *, required: bool = False, _type: Op
     :param name: Environment variable name
     :param default: Value to use if variable is not assigned in environment, this will be converted to string
     :param required: If the variable is not assigned in the environment, raise an error
-    :param _type: Cast the variable to the type specified.
-    :return:
+    :param _type: Cast the variable to the type specified
+    :return: Environment variable casted to the `_type`
     """
 
     if default and required:
@@ -30,7 +32,7 @@ def setting(name: str, default: Any = None, *, required: bool = False, _type: Op
         try:
             env_var = _type(env_var)
         except (TypeError, ValueError) as err:
-            print(f"Could not converted Env Var {name} into type {_type}: {err}")
+            print(f"Could not convert Env Var {name} into type {_type}: {err}")
             exit()
 
     return env_var

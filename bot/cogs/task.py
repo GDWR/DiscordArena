@@ -83,6 +83,17 @@ class Task(Cog):
         )
         await ctx.send(embed=await task.embed)
 
+    @task.command()
+    async def lumber(self, ctx: Context) -> None:
+        """Begin a woodcutting session."""
+        player = await Player.objects.get(id=ctx.author.id)
+        task = await TaskModel.objects.create(
+            player=player,
+            completion_date=datetime.utcnow() + timedelta(minutes=1),
+            _task_type=TaskType.Lumber.value,
+        )
+        await ctx.send(embed=await task.embed)
+
 
 def setup(bot: ArenaBot) -> None:
     """Add the cog to the bot"""

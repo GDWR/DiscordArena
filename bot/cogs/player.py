@@ -12,6 +12,7 @@ class Player(Cog):
 
     @command()
     async def profile(self, ctx: Context) -> None:
+        """Display the profile of the author."""
         player = await PlayerModel.objects.get(id=ctx.author.id)
         await ctx.send(embed=player.embed)
 

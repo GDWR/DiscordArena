@@ -4,15 +4,22 @@ from databases import Database as db
 
 
 class Database:
+    """
+    Database class to contain all functionality.
+
+    This maybe expanded into having a cache system.
+    """
     database = db(f"postgresql://{DATABASE_USER}:{DATABASE_PASS}@{DATABASE_HOST}:{DATABASE_PORT}")
     metadata = sqlalchemy.MetaData()
     _engine = sqlalchemy.create_engine(str(database.url))
 
     async def connect(self) -> None:
+        """Connect to the database."""
         await self.database.connect()
         self.create_all_tables()
 
     async def disconnect(self) -> None:
+        """Disconnect from the database."""
         await self.database.disconnect()
 
     def create_all_tables(self) -> None:

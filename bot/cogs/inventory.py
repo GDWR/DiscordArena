@@ -12,6 +12,7 @@ class Inventory(Cog):
 
     @command()
     async def inventory(self, ctx: Context) -> None:
+        """Display the inventory of the author."""
         items = await Item.objects.filter(owner_id=ctx.author.id).all()
 
         embed = Embed(title="Items", colour=ctx.author.colour)

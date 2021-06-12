@@ -12,8 +12,11 @@ from .item_type import ItemType
 
 
 class ItemFactory:
+    """Factory to contain the generic ways to create Items."""
+
     @staticmethod
     async def random(owner_id: int) -> Item:
+        """Generate a fully random item."""
         return await Item.objects.create(
             name="Random",
             owner_id=owner_id,
@@ -24,9 +27,7 @@ class ItemFactory:
 
 
 class Item(Model):
-    """
-    Representation of an Item
-    """
+    """Representation of an Item, this is a Database Object."""
     __tablename__ = "item"
     __database__ = Database.database
     __metadata__ = Database.metadata

@@ -4,9 +4,7 @@ from discord import Colour
 
 
 class Rarity(Enum):
-    """
-    Represent rarity within Discord Arena
-    """
+    """Represent rarity within Discord Arena."""
     Poor = 1
     Common = 2
     Uncommon = 3

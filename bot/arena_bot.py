@@ -36,11 +36,11 @@ class ArenaBot(Bot):
         asyncio.ensure_future(self.database.connect())
 
     async def on_ready(self) -> None:
-        """Event when the bot logs in and is connected to the gateway."""
+        """Task when the bot logs in and is connected to the gateway."""
         print(f"Logged in as {self.user}")
 
     async def on_disconnect(self) -> None:
-        """Event when the bot disconnects from the gateway."""
+        """Task when the bot disconnects from the gateway."""
         await self.session.close()
 
     def load_extensions(self) -> None:

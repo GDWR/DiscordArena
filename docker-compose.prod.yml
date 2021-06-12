@@ -1,15 +1,15 @@
 version: "3"
 
 services:
-  workspace:
+  bot:
     build:
       context: bot
-      dockerfile: dev.dockerfile
-    volumes:
-      - "./bot:/workspace/bot"
+      dockerfile: prod.dockerfile
 
   database:
     image: postgres
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

@@ -1,0 +1,6 @@
+# Exclude everything
+*
+
+# Make exceptions for what's needed
+!assets
+!bot

@@ -1,3 +1,4 @@
 # VSCode
 .vscode/
 *.db
+.env

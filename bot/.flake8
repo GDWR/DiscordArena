@@ -1,0 +1,8 @@
+[flake8]
+ignore = E501, D100, D211, D204, D400, D107, D205, D202, D401
+exclude = __init__.py, __main__.py
+max-complexity = 10
+max-line-length = 120
+
+[method]
+exclude = __main__

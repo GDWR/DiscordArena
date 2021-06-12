@@ -20,10 +20,17 @@ def setting(name: str, default: Any = None, *, required: bool = False, _type: Op
         )
 
     env_var = getenv(name, default)
+    if env_var == "":
+        env_var = default
+
     if required and env_var is None:
         raise EnvironmentError(f'Missing environment variable: {name}')
 
     if _type is not None:
-        env_var = _type(env_var)
+        try:
+            env_var = _type(env_var)
+        except (TypeError, ValueError) as err:
+            print(f"Could not converted Env Var {name} into type {_type}: {err}")
+            exit()
 
-    return str(env_var)
+    return env_var

@@ -6,7 +6,7 @@
     <envs>
       <env name="PYTHONUNBUFFERED" value="1" />
     </envs>
-    <option name="SDK_HOME" value="docker-compose://[H:\DiscordArena\docker-compose.yml]:workspace/python" />
+    <option name="SDK_HOME" value="docker-compose://[$PROJECT_DIR$\docker-compose.yml]:bot/python" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -25,12 +25,12 @@
     <PathMappingSettings>
       <option name="pathMappings">
         <list>
-          <mapping local-root="$PROJECT_DIR$/bot" remote-root="/workspace/bot" />
+          <mapping local-root="$PROJECT_DIR$" remote-root="/workspace" />
         </list>
       </option>
     </PathMappingSettings>
     <option name="SCRIPT_NAME" value="flake8" />
-    <option name="PARAMETERS" value="bot" />
+    <option name="PARAMETERS" value="" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="true" />

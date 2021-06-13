@@ -4,8 +4,8 @@ from arena_bot import ArenaBot
 from models import Player
 
 
-class Base(Cog):
-    """Cog holds Base commands"""
+class Core(Cog):
+    """Cog holds Core commands"""
 
     def __init__(self, bot: ArenaBot):
         self.bot = bot
@@ -28,9 +28,9 @@ class Base(Cog):
 
 def setup(bot: ArenaBot) -> None:
     """Add the cog to the bot"""
-    bot.add_cog(Base(bot))
+    bot.add_cog(Core(bot))
 
 
 def teardown(bot: ArenaBot) -> None:
     """Remove the cog cleanly"""
-    bot.remove_cog('Base')
+    bot.remove_cog('Core')

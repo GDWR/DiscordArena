@@ -4,10 +4,12 @@ import random
 
 from discord import Embed
 from orm import Model, Integer, String, ForeignKey
+from sqlalchemy import UniqueConstraint
 
 from arena_bot import ArenaBot
 from database import Database
 from models.rarity import Rarity
+from utils import uid
 from .player import Player
 from .item_type import ItemType
 
@@ -19,7 +21,10 @@ class ItemFactory:
     async def random(owner_id: int) -> Item:
         """Generate a fully random item."""
         player = await Player.objects.get(id=owner_id)
+        item_count = await Item.objects.filter(owner=player.id).count()
+
         return await Item.objects.create(
+            item_id=uid.get_uid(player.id, item_count),
             name="RandomWeapon",
             owner=player,
             value=random.randint(1, 100),
@@ -33,8 +38,10 @@ class Item(Model):
     __tablename__ = "item"
     __database__ = Database.database
     __metadata__ = Database.metadata
+    __table_args__ = (UniqueConstraint('owner', 'item_id'),)
 
     id: int = Integer(primary_key=True, index=True)
+    item_id: str = String(max_length=4)
     name: str = String(max_length=50)
     owner: Player = ForeignKey(Player)
     value: int = Integer()
@@ -53,7 +60,7 @@ class Item(Model):
     async def embed(self) -> Embed:
         """Get a Embed that represents the Item"""
         embed = Embed(title=f"{self.rarity.emoji} {self.name}", colour=self.rarity.colour)
-        embed.add_field(name="Item ID", value=str(self.id))
+        embed.add_field(name="Item ID", value=f"`{self.item_id}`")
         embed.add_field(name="Value", value=str(self.value))
 
         bot = ArenaBot.instance

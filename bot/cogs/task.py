@@ -1,7 +1,7 @@
 import random
 from datetime import datetime, timedelta
 
-from discord import DiscordException
+from discord import DiscordException, Embed
 from discord.ext.commands import Cog, Context, group, CommandInvokeError
 from orm import NoMatch
 
@@ -26,23 +26,11 @@ class Task(Cog):
         """Handle errors within the cog"""
         if isinstance(error.original, AlreadyOnTask):
             task = error.original.task
-            embed = await task.embed
-
             if task.completion_date <= datetime.utcnow():
-                embed.description = "Task completed"
-
-                # Update the users proficiency randomly for the task completed.
-                proficiency = await TaskProficiency.objects.get(player=task.player)
-                await proficiency.increment_exp(
-                    task.task_type,
-                    random.randint(config.TASK_EXP_GAIN_MIN, config.TASK_EXP_GAIN_MAX)
-                )
-
-                await task.update(completed=True)
+                embed = await self._task_completed(task)
             else:
-                embed.description = f"Already on a task, finishing at {task.completion_date}"
+                embed = await task.embed
             await ctx.send(embed=embed)
-
         else:
             raise error
 
@@ -69,6 +57,26 @@ class Task(Cog):
             output -= current_step
             current_step *= config.TASK_DECREASE_MULTI
         return max(config.TASK_BASE_TIME // 2, output)
+
+    async def _task_completed(self, task: TaskModel) -> Embed:
+        """This is called when a task is completed. Returns a relevant embed."""
+        embed = Embed(title="Task Completed", colour=task.task_type.colour)
+
+        # Update the users proficiency randomly for the task completed.
+        player = task.player
+        proficiency = await TaskProficiency.objects.get(player=player)
+        await proficiency.increment_exp(
+            task.task_type,
+            random.randint(config.TASK_EXP_GAIN_MIN, config.TASK_EXP_GAIN_MAX)
+        )
+        await task.update(completed=True)
+
+        reward = round(config.TASK_BASE_REWARD * (config.TASK_REWARD_MULTI * proficiency.task_level(task.task_type)))
+        await player.load()
+        await player.update(coin=player.coin + reward)
+        embed.description = f"You received {reward} gold."
+
+        return embed
 
     async def _create_task(self, user_id: int, task: TaskType) -> TaskModel:
         proficiency = await self._get_or_create_player_proficiency(user_id)

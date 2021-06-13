@@ -30,7 +30,7 @@ class ArenaBot(Bot):
         return cls.instance
 
     def __init__(self, command_prefix: str, *args, **kwargs):
-        super().__init__(command_prefix, *args, **kwargs)
+        super().__init__(command_prefix, case_sensitive=False, *args, **kwargs)
         self.session = ClientSession()
         self.database = Database()
         asyncio.ensure_future(self.database.connect())

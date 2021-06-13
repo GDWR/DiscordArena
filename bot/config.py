@@ -22,3 +22,5 @@ TASK_EXP_GAIN_MAX = setting("TASK_EXP_GAIN_MAX", 16, _type=int)
 TASK_BASE_TIME = setting("TASK_BASE_TIME", 240, _type=int)  # Minutes
 TASK_BASE_DECREASE = setting("TASK_BASE_DECREASE", 20, _type=int)  # Minutes
 TASK_DECREASE_MULTI = setting("TASK_DECREASE_MULTI", 0.75, _type=float)
+TASK_BASE_REWARD = setting("TASK_BASE_REWARD", 5, _type=int)
+TASK_REWARD_MULTI = setting("TASK_REWARD_MULTI", 0.75, _type=float)

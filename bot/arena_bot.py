@@ -46,12 +46,10 @@ class ArenaBot(Bot):
 
     async def on_command_error(self, ctx: Context, exception: CommandInvokeError):
         """Handle global command errors."""
-        if isinstance(exception.original, NoMatch):
-            await ctx.reply(f"Please register your account with `{self.command_prefix}join`")
+        if hasattr(exception, 'original') and isinstance(exception.original, NoMatch):
+            await ctx.reply(f"Please register your account with `{self.command_prefix}join`", mention_author=False)
         else:
             raise exception
-
-
 
     def load_extensions(self) -> None:
         """Iterate through all the `.py` files found int `bot/cogs` and load them as cogs."""

@@ -1,7 +1,7 @@
 import random
 from datetime import datetime, timedelta
 
-from discord import DiscordException, Embed
+from discord import Embed
 from discord.ext.commands import Cog, Context, group, CommandInvokeError
 from orm import NoMatch
 

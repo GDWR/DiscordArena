@@ -22,7 +22,6 @@ class Chest(Cog):
         except NoMatch as err:
             raise ItemNotFound(chest_id) from err
 
-
         if item.item_type is not ItemType.Chest:
             return await ctx.reply("> That's not a Chest.")
 

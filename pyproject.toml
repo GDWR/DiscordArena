@@ -12,9 +12,9 @@ license = "GPL-3.0-only"
 python = "^3.9"
 discord = "^1.0.1"
 SQLAlchemy = "^1.2"
-orm = {git = "https://github.com/GDWR/orm.git", branch = "feature/bigint"}
+orm = {git = "https://github.com/GDWR/orm.git", branch = "master"}
 databases = {extras = ["postgresql"], version = "^0.4.3"}
-psycopg2 = "^2.8.6"
+psycopg2-binary = "^2.8.6"
 
 [tool.poetry.dev-dependencies]
 python-dotenv = "^0.17.1"

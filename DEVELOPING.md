@@ -22,6 +22,10 @@ You must have a `.env` file at the root of the project with at least the `TOKEN`
 environment variables you can change. There is a [.env.example](.env.example) file that contains a environment file 
 without the values filled in.
 
+#### Known Issues
+- You must [set the source roots](https://stackoverflow.com/questions/4580101/python-add-pythonpath-during-command-line-module-run) when running it with the python in the terminal. The issue may look like `ModuleNotFoundError: No module named 'config'`.
+
+
 Environment Variables
 ----------------------
 |Key            |Value                                    |Default  |

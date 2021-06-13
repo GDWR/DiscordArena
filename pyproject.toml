@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "bot"
+name = "DiscordArena"
 version = "0.1.0"
 description = "A discord bot"
 authors = ["GDWR <gregory.dwr@gmail.com>"]

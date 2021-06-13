@@ -6,7 +6,8 @@ from pathlib import Path
 
 from aiohttp import ClientSession
 from discord import Intents
-from discord.ext.commands import Bot
+from discord.ext.commands import Bot, Context, CommandInvokeError
+from orm import NoMatch
 
 from config import COMMAND_PREFIX
 from database import Database
@@ -42,6 +43,15 @@ class ArenaBot(Bot):
     async def on_disconnect(self) -> None:
         """Task when the bot disconnects from the gateway."""
         await self.session.close()
+
+    async def on_command_error(self, ctx: Context, exception: CommandInvokeError):
+        """Handle global command errors."""
+        if isinstance(exception.original, NoMatch):
+            await ctx.reply(f"Please register your account with `{self.command_prefix}join`")
+        else:
+            raise exception
+
+
 
     def load_extensions(self) -> None:
         """Iterate through all the `.py` files found int `bot/cogs` and load them as cogs."""

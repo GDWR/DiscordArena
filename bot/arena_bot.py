@@ -22,6 +22,7 @@ class ArenaBot(Bot):
      * Singleton
      * load_extensions
     """
+
     instance = None
 
     # flake8: noqa: D102
@@ -32,7 +33,7 @@ class ArenaBot(Bot):
 
     def __init__(self, command_prefix: str, *args, **kwargs):
         super().__init__(command_prefix, *args, **kwargs)
-        self.logger = logging.getLogger("ArenaBot")
+        self.logger = logging.getLogger(__name__)
         self.session = ClientSession()
         self.database = Database()
         asyncio.ensure_future(self.database.connect())
@@ -56,8 +57,5 @@ class ArenaBot(Bot):
     def create(cls) -> ArenaBot:
         """Create the instance of the bot"""
         bot_intents = Intents.default()
-        bot = cls(
-            command_prefix=COMMAND_PREFIX,
-            intents=bot_intents
-        )
+        bot = cls(command_prefix=COMMAND_PREFIX, intents=bot_intents)
         return bot

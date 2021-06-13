@@ -11,7 +11,7 @@ class Core(Cog):
         self.bot = bot
 
     @command()
-    async def join(self, ctx: Context) -> None:
+    async def join(self, ctx: Context):
         """Join if not already."""
         if not await Player.objects.filter(id=ctx.author.id).exists():
             await Player.objects.create(id=ctx.author.id)
@@ -22,7 +22,7 @@ class Core(Cog):
         await ctx.reply(":x: Already have an account created", delete_after=5)
 
     @command()
-    async def profile(self, ctx: Context) -> None:
+    async def profile(self, ctx: Context):
         """Display the profile of the author."""
         player: Player = await Player.objects.get(id=ctx.author.id)
         task_proficiency = await TaskProficiency.objects.get(player=player)

@@ -1,7 +1,7 @@
 from discord.ext.commands import Cog, command, Context
 
 from arena_bot import ArenaBot
-from models import ItemFactory
+from models import ItemFactory, ItemType
 
 
 class Development(Cog):
@@ -15,9 +15,15 @@ class Development(Cog):
         self.bot = bot
 
     @command()
-    async def random_item(self, ctx: Context) -> None:
+    async def random_item(self, ctx: Context):
         """Generate a random item for the author."""
-        item = await ItemFactory.random(ctx.author.id)
+        item = await ItemFactory.random(ctx.author.id, item_type=ItemType.Weapon.value)
+        await ctx.reply(embed=await item.embed)
+
+    @command()
+    async def random_chest(self, ctx: Context):
+        """Generate a random item for the author."""
+        item = await ItemFactory.random(ctx.author.id, name="RandomChest", item_type=ItemType.Chest.value)
         await ctx.reply(embed=await item.embed)
 
 

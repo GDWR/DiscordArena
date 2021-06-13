@@ -5,6 +5,7 @@ from discord import DiscordException
 from discord.ext.commands import Cog, Context, group, CommandInvokeError
 from orm import NoMatch
 
+import config
 from arena_bot import ArenaBot
 from models import Player, Task as TaskModel, TaskType, TaskProficiency
 
@@ -30,8 +31,13 @@ class Task(Cog):
             if task.completion_date <= datetime.utcnow():
                 embed.description = "Task completed"
 
+                # Update the users proficiency randomly for the task completed.
                 proficiency = await TaskProficiency.objects.get(player=task.player)
-                await proficiency.increment_exp(task.task_type, random.randint(4, 16))
+                await proficiency.increment_exp(
+                    task.task_type,
+                    random.randint(config.TASK_EXP_GAIN_MIN, config.TASK_EXP_GAIN_MAX)
+                )
+
                 await task.update(completed=True)
             else:
                 embed.description = f"Already on a task, finishing at {task.completion_date}"

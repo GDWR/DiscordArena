@@ -1,13 +1,14 @@
 import random
 from datetime import datetime, timedelta
 
-from discord import Embed
-from discord.ext.commands import Cog, Context, group, CommandInvokeError
-from orm import NoMatch
-
-import config
+import config as config
 from arena_bot import ArenaBot
-from models import Player, Task as TaskModel, TaskType, TaskProficiency
+from discord import Embed
+from discord.ext.commands import Cog, CommandInvokeError, Context, group
+from models import Player
+from models import Task as TaskModel
+from models import TaskProficiency, TaskType
+from orm import NoMatch
 
 
 class AlreadyOnTask(Exception):
@@ -49,7 +50,7 @@ class Task(Cog):
         Calculate the time the task will take based on level.
 
         :level: Proficiency level of the player
-        :return: Time taken in minuites
+        :return: Time taken in minutes
         """
         output = config.TASK_BASE_TIME
         current_step = config.TASK_BASE_DECREASE

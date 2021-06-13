@@ -17,7 +17,7 @@ class Database:
         """Connect to the database."""
         print(f"Connecting to database: {self.database.url}")
         await self.database.connect()
-        print("Connected to database")
+        print(f"Connected to database: {self.database.url}")
         self.create_all_tables()
 
     async def disconnect(self) -> None:

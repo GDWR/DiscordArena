@@ -1,7 +1,7 @@
-from discord.ext.commands import Cog, Context, command
-
 from arena_bot import ArenaBot
 from models import Player, TaskProficiency
+
+from discord.ext.commands import Cog, Context, command
 
 
 class Core(Cog):

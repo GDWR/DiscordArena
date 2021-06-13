@@ -10,13 +10,16 @@ Branches should pre-fixed with either `bug/`, `feature/` or `documentation/` bas
 to accomplish.
 
 ### Flake8
-A GitHub action has been created to run pylint on the repo during the pull request stage. 
+A GitHub action has been created to run flake8 on the repo during the pull request stage. 
 If this fails, your pull request will not be accepted. 
 
-This can be ran by using while in the root of the repo.
+You can run linting using commands from the root of the repo.
 
-`pip3 install flake8 flake8-docstrings`
-`python3 -m flake8 src/api`
+`poetry install` - Installs all poetry dependencies
+
+`poetry run task lint` - Lints the project using flake8
+
+See [here](/DEVELOPING.md#commands-to-remember) for more useful commands
 
 ### Development Environment
 For documentation on the developing environment see [here](DEVELOPING.md)

@@ -11,7 +11,7 @@ class Inventory(Cog):
         self.bot = bot
 
     @command()
-    async def inventory(self, ctx: Context) -> None:
+    async def inventory(self, ctx: Context):
         """Display the inventory of the author."""
         player = await Player.objects.get(id=ctx.author.id)
         items = await Item.objects.filter(owner=player).all()

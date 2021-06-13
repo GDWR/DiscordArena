@@ -11,7 +11,7 @@ class Item(Cog):
         self.bot = bot
 
     @command()
-    async def item(self, ctx: Context, item_id: str) -> None:
+    async def item(self, ctx: Context, item_id: str):
         """Task group. Sends current task if currently doing one, else send help message."""
         item = await ItemModel.objects.get(id=item_id)
         await ctx.reply(await item.embed)

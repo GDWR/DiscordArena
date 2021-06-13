@@ -15,7 +15,7 @@ class Development(Cog):
         self.bot = bot
 
     @command()
-    async def random_item(self, ctx: Context) -> None:
+    async def random_item(self, ctx: Context):
         """Generate a random item for the author."""
         item = await ItemFactory.random(ctx.author.id)
         await ctx.reply(embed=await item.embed)

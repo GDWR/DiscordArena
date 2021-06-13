@@ -18,18 +18,18 @@ class ItemFactory:
     """Factory to contain the generic ways to create Items."""
 
     @staticmethod
-    async def random(owner_id: int) -> Item:
+    async def random(owner_id: int, **kwargs) -> Item:
         """Generate a fully random item."""
         player = await Player.objects.get(id=owner_id)
-        item_count = await Item.objects.filter(owner=player.id).count()
+        await player.update(item_counter=player.item_counter + 1)
 
         return await Item.objects.create(
-            item_id=uid.get_uid(player.id, item_count),
-            name="RandomWeapon",
+            item_id=kwargs.get('item_id') or uid.get_uid(player.id, player.item_counter),
+            name=kwargs.get('name') or "RandomWeapon",
             owner=player,
-            value=random.randint(1, 100),
-            _rarity=random.choice(list(Rarity)).value,
-            _item_type=ItemType.Weapon.value
+            value=kwargs.get('value') or random.randint(1, 100),
+            _rarity=kwargs.get('rarity') or random.choice(list(Rarity)).value,
+            _item_type=kwargs.get('item_type') or ItemType.Weapon.value
         )
 
 
@@ -52,8 +52,8 @@ class Item(Model):
     def embed_field(self) -> dict[str, str]:
         """Get a embed field that represents the Item"""
         return {
-            "name": f"`{self.id}` | {self.rarity.emoji} {self.name}",
-            "value": f"Value: {self.value}"
+            "name": f"`{self.item_id}` | {self.rarity.emoji} {self.name}",
+            "value": f"Value: {self.value} - Type: {self.item_type.name}"
         }
 
     @property

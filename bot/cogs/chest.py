@@ -1,7 +1,9 @@
 from discord.ext.commands import Cog, Context, command
+from orm import NoMatch
 
 from arena_bot import ArenaBot
-from models import Item
+from exceptions import ItemNotFound
+from models import Item, ItemType, ItemFactory
 
 
 class Chest(Cog):
@@ -11,10 +13,23 @@ class Chest(Cog):
         self.bot = bot
 
     @command()
-    async def open(self, ctx: Context, chest_id: str) -> None:
+    async def open(self, ctx: Context, chest_id: str):
         """Open a chest."""
-        item = await Item.objects.get(id=chest_id)
-        await ctx.reply(await item.embed)
+        chest_id = chest_id.upper()
+
+        try:
+            item = await Item.objects.get(item_id=chest_id)
+        except NoMatch as err:
+            raise ItemNotFound(chest_id) from err
+
+
+        if item.item_type is not ItemType.Chest:
+            return await ctx.reply("> That's not a Chest.")
+
+        await item.delete()
+        new_item = await ItemFactory.random(ctx.author.id)
+        await ctx.reply(embed=await new_item.embed)
+
 
 def setup(bot: ArenaBot) -> None:
     """Add the cog to the bot"""

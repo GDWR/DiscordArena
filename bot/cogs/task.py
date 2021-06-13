@@ -10,7 +10,7 @@ from arena_bot import ArenaBot
 from models import Player, Task as TaskModel, TaskType, TaskProficiency
 
 
-class AlreadyOnTask(DiscordException):
+class AlreadyOnTask(Exception):
     """Error raised when a user attempts to start a task while already on one."""""
     def __init__(self, task: TaskModel):
         self.task = task

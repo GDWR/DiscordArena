@@ -1,3 +1,3 @@
 import logging
 
-logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.WARNING)
+logging.basicConfig(format='%(asctime)s - %(name)s: %(message)s', datefmt='%d-%m-%Y %H:%M:%S', level=logging.WARNING)

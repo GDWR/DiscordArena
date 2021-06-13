@@ -1,5 +1,5 @@
 import sqlalchemy
-from bot.config import DATABASE_USER, DATABASE_HOST, DATABASE_PORT, DATABASE_PASS
+from config import DATABASE_USER, DATABASE_HOST, DATABASE_PORT, DATABASE_PASS
 from databases import Database as db
 
 

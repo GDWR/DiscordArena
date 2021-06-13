@@ -1,7 +1,7 @@
 from discord.ext.commands import Cog, command, Context
 
-from bot.arena_bot import ArenaBot
-from bot.models import ItemFactory
+from arena_bot import ArenaBot
+from models import ItemFactory
 
 
 class Development(Cog):

@@ -35,6 +35,6 @@ Environment Variables
 
 ### Commands to Remember:
 
-`poetry run bot` - Runs the discord bot
+`poetry run task bot` - Runs the discord bot
 
 `poetry run task lint` - Lints the project with flake8

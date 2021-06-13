@@ -1,14 +1,13 @@
 import random
 from datetime import datetime, timedelta
 
-import bot.config as config
-from bot.arena_bot import ArenaBot
-from bot.models import Player
-from bot.models import Task as TaskModel
-from bot.models import TaskProficiency, TaskType
-
+import config as config
+from arena_bot import ArenaBot
 from discord import DiscordException, Embed
 from discord.ext.commands import Cog, CommandInvokeError, Context, group
+from models import Player
+from models import Task as TaskModel
+from models import TaskProficiency, TaskType
 from orm import NoMatch
 
 

@@ -5,8 +5,8 @@ from datetime import datetime
 from discord import Embed, Colour
 from orm import DateTime, BigInteger, Model, Integer
 
-from bot.arena_bot import ArenaBot
-from bot.database import Database
+from arena_bot import ArenaBot
+from database import Database
 
 
 class Player(Model):

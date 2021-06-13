@@ -8,8 +8,8 @@ from aiohttp import ClientSession
 from discord import Intents
 from discord.ext.commands import Bot
 
-from bot.config import COMMAND_PREFIX
-from bot.database import Database
+from config import COMMAND_PREFIX
+from database import Database
 
 
 class ArenaBot(Bot):
@@ -46,7 +46,7 @@ class ArenaBot(Bot):
     def load_extensions(self) -> None:
         """Iterate through all the `.py` files found int `bot/cogs` and load them as cogs."""
         for file in map(Path, glob("bot/cogs/*.py")):
-            self.load_extension(f"bot.cogs.{file.stem}")
+            self.load_extension(f"cogs.{file.stem}")
 
     @classmethod
     def create(cls) -> ArenaBot:

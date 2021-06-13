@@ -1,6 +1,6 @@
 from discord.ext.commands import Cog, Context, group
 
-from bot.arena_bot import ArenaBot
+from arena_bot import ArenaBot
 
 
 class Shop(Cog):

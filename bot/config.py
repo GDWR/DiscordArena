@@ -2,7 +2,7 @@ from os import getenv
 
 from dotenv import load_dotenv
 
-from bot.utils.setting import setting
+from utils.setting import setting
 
 if getenv("ENVIRONMENT") is None:
     load_dotenv()

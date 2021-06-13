@@ -23,11 +23,9 @@ taskipy = "^1.8.1"
 flake8 = "^3.9.2"
 flake8-docstrings = "^1.6.0"
 
-[tool.poetry.scripts]
-bot = 'bot.__main__:main'
-
 [tool.taskipy.tasks]
 lint = "poetry run flake8 bot"
+bot = "cd bot && poetry run python __main__.py"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

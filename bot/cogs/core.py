@@ -1,5 +1,5 @@
-from bot.arena_bot import ArenaBot
-from bot.models import Player, TaskProficiency
+from arena_bot import ArenaBot
+from models import Player, TaskProficiency
 
 from discord.ext.commands import Cog, Context, command
 

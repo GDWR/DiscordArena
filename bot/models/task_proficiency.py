@@ -73,3 +73,11 @@ class TaskProficiency(Model):
             await self.update(mine_exp=self.mine_exp + amount)
         elif task_type is TaskType.Lumber:
             await self.update(lumber_exp=self.lumber_exp + amount)
+
+    @property
+    def embed_fields(self) -> list[dict[str, str]]:
+        """Get a list of embed fields that represents the Users Proficiencies"""
+        return [
+            {"name": f"`{task.name}`", "value": f"{level}"}
+            for task, level in [(task_type, self.task_level(task_type)) for task_type in list(TaskType)]
+        ]

@@ -18,6 +18,8 @@ class Core(Cog):
             # Get back from database to reconstruct object correctly.
             player = await Player.objects.get(id=ctx.author.id)
             await ctx.send(embed=await player.embed)
+            return
+        await ctx.reply(":x: Already have an account created", delete_after=5)
 
     @command()
     async def profile(self, ctx: Context) -> None:
@@ -30,7 +32,7 @@ class Core(Cog):
         for field in task_proficiency.embed_fields:
             embed.add_field(**field)
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
 
 def setup(bot: ArenaBot) -> None:

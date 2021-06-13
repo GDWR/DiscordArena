@@ -30,7 +30,7 @@ class Task(Cog):
                 embed = await self._task_completed(task)
             else:
                 embed = await task.embed
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
         else:
             raise error
 
@@ -96,35 +96,35 @@ class Task(Cog):
 
         except NoMatch:
             if ctx.invoked_subcommand is None:
-                await ctx.send("Task help message...")
+                await ctx.reply("Task help message...")
 
     @task.command()
     async def hunt(self, ctx: Context) -> None:
         """Begin a hunt_exp."""
         task = await self._create_task(ctx.author.id, TaskType.Hunt)
         embed = await task.embed
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @task.command()
     async def mine(self, ctx: Context) -> None:
         """Begin a mining session."""
         task = await self._create_task(ctx.author.id, TaskType.Mine)
         embed = await task.embed
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @task.command()
     async def gather(self, ctx: Context) -> None:
         """Begin a gather_exp."""
         task = await self._create_task(ctx.author.id, TaskType.Gather)
         embed = await task.embed
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @task.command()
     async def lumber(self, ctx: Context) -> None:
         """Begin a woodcutting session."""
         task = await self._create_task(ctx.author.id, TaskType.Lumber)
         embed = await task.embed
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
 
 def setup(bot: ArenaBot) -> None:

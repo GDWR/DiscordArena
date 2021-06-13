@@ -55,13 +55,27 @@ class Task(Cog):
         except NoMatch:
             return await TaskProficiency.objects.create(player=player)
 
+    @staticmethod
+    def calculate_time(level: int) -> float:
+        """
+        Calculate the time the task will take based on level.
+
+        :level: Proficiency level of the player
+        :return: Time taken in minuites
+        """
+        output = config.TASK_BASE_TIME
+        current_step = config.TASK_BASE_DECREASE
+        for i in range(level):
+            output -= current_step
+            current_step *= config.TASK_DECREASE_MULTI
+        return max(config.TASK_BASE_TIME // 2, output)
+
     async def _create_task(self, user_id: int, task: TaskType) -> TaskModel:
         proficiency = await self._get_or_create_player_proficiency(user_id)
         task_level = proficiency.task_level(task)
-
         return await TaskModel.objects.create(
             player=proficiency.player,
-            completion_date=datetime.utcnow() + timedelta(minutes=config.TASK_BASE_TIME),
+            completion_date=datetime.utcnow() + timedelta(minutes=self.calculate_time(task_level)),
             _task_type=task.value,
         )
 

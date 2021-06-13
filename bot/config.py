@@ -19,4 +19,6 @@ DATABASE_PASS = setting("DATABASE_PASS", "postgres")
 PROFICIENCY_EXP_PER_LEVEL = setting("PROFICIENCY_EXP_PER_LEVEL", 8, _type=int)
 TASK_EXP_GAIN_MIN = setting("TASK_EXP_GAIN_MIN", 4, _type=int)
 TASK_EXP_GAIN_MAX = setting("TASK_EXP_GAIN_MAX", 16, _type=int)
-TASK_BASE_TIME = setting("TASK_BASE_TIME", 120, _type=int)  # Minutes
+TASK_BASE_TIME = setting("TASK_BASE_TIME", 240, _type=int)  # Minutes
+TASK_BASE_DECREASE = setting("TASK_BASE_DECREASE", 20, _type=int)  # Minutes
+TASK_DECREASE_MULTI = setting("TASK_DECREASE_MULTI", 0.75, _type=float)

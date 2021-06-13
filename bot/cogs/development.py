@@ -18,6 +18,7 @@ class Development(Cog):
 
     @command()
     async def reload_tables(self, ctx: Context) -> None:
+        """Drop and create all the tables."""
         self.bot.database.drop_all_tables()
         self.bot.database.create_all_tables()
         

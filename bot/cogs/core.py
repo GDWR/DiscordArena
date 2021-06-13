@@ -1,7 +1,7 @@
 from discord.ext.commands import Cog, Context, command
 
 from arena_bot import ArenaBot
-from models import Player
+from models import Player, TaskProficiency
 
 
 class Core(Cog):
@@ -24,8 +24,15 @@ class Core(Cog):
     @command()
     async def profile(self, ctx: Context) -> None:
         """Display the profile of the author."""
-        player = await Player.objects.get(id=ctx.author.id)
-        await ctx.reply(embed=player.embed)
+        player: Player = await Player.objects.get(id=ctx.author.id)
+        task_proficiency = await TaskProficiency.objects.get(player=player)
+
+        embed = await player.embed
+
+        for field in task_proficiency.embed_fields:
+            embed.add_field(**field)
+
+        await ctx.reply(embed=embed)
 
 
 def setup(bot: ArenaBot) -> None:

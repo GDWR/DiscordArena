@@ -5,7 +5,11 @@ from models import ItemFactory
 
 
 class Development(Cog):
-    """Cog that holds development tools, this isn't loaded in Production."""
+    """
+    Cog that holds development tools, this isn't loaded in Production.
+
+    Feel free to add any useful commands that will help with development.
+    """
 
     def __init__(self, bot: ArenaBot):
         self.bot = bot

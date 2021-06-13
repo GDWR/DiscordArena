@@ -4,6 +4,7 @@ from arena_bot import ArenaBot
 from models import ItemFactory
 from database import Database
 
+
 class Development(Cog):
     """Cog that holds development tools, this isn't loaded in Production."""
 
@@ -21,11 +22,12 @@ class Development(Cog):
         """Drop and create all the tables."""
         self.bot.database.drop_all_tables()
         self.bot.database.create_all_tables()
-        
+
     @command()
     async def ping(self, ctx: Context) -> None:
         """Sends the ping in ms."""
         await ctx.send(f"Ping is {round(self.bot.latency * 1000)}ms")
+
 
 def setup(bot: ArenaBot) -> None:
     """Add the cog"""
@@ -34,4 +36,4 @@ def setup(bot: ArenaBot) -> None:
 
 def teardown(bot: ArenaBot) -> None:
     """Remove the cog"""
-    bot.remove_cog('Development')
+    bot.remove_cog("Development")

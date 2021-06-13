@@ -1,7 +1,7 @@
 import random
 from datetime import datetime, timedelta
 
-from discord import DiscordException, Embed
+from discord import Embed
 from discord.ext.commands import Cog, Context, group, CommandInvokeError
 from orm import NoMatch
 
@@ -10,7 +10,7 @@ from arena_bot import ArenaBot
 from models import Player, Task as TaskModel, TaskType, TaskProficiency
 
 
-class AlreadyOnTask(DiscordException):
+class AlreadyOnTask(Exception):
     """Error raised when a user attempts to start a task while already on one."""""
     def __init__(self, task: TaskModel):
         self.task = task
@@ -22,7 +22,7 @@ class Task(Cog):
     def __init__(self, bot: ArenaBot):
         self.bot = bot
 
-    async def cog_command_error(self, ctx: Context, error: CommandInvokeError) -> None:
+    async def cog_command_error(self, ctx: Context, error: CommandInvokeError):
         """Handle errors within the cog"""
         if isinstance(error.original, AlreadyOnTask):
             task = error.original.task
@@ -88,7 +88,7 @@ class Task(Cog):
         )
 
     @group()
-    async def task(self, ctx: Context) -> None:
+    async def task(self, ctx: Context):
         """Task group. Sends current task if currently doing one, else send help message."""
         try:
             task = await TaskModel.objects.get(player=ctx.author.id, completed=False)
@@ -99,28 +99,28 @@ class Task(Cog):
                 await ctx.reply("Task help message...")
 
     @task.command()
-    async def hunt(self, ctx: Context) -> None:
+    async def hunt(self, ctx: Context):
         """Begin a hunt_exp."""
         task = await self._create_task(ctx.author.id, TaskType.Hunt)
         embed = await task.embed
         await ctx.reply(embed=embed)
 
     @task.command()
-    async def mine(self, ctx: Context) -> None:
+    async def mine(self, ctx: Context):
         """Begin a mining session."""
         task = await self._create_task(ctx.author.id, TaskType.Mine)
         embed = await task.embed
         await ctx.reply(embed=embed)
 
     @task.command()
-    async def gather(self, ctx: Context) -> None:
+    async def gather(self, ctx: Context):
         """Begin a gather_exp."""
         task = await self._create_task(ctx.author.id, TaskType.Gather)
         embed = await task.embed
         await ctx.reply(embed=embed)
 
     @task.command()
-    async def lumber(self, ctx: Context) -> None:
+    async def lumber(self, ctx: Context):
         """Begin a woodcutting session."""
         task = await self._create_task(ctx.author.id, TaskType.Lumber)
         embed = await task.embed

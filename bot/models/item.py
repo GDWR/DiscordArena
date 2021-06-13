@@ -4,10 +4,12 @@ import random
 
 from discord import Embed
 from orm import Model, Integer, String, ForeignKey
+from sqlalchemy import UniqueConstraint
 
 from arena_bot import ArenaBot
 from database import Database
 from models.rarity import Rarity
+from utils import uid
 from .player import Player
 from .item_type import ItemType
 
@@ -16,14 +18,18 @@ class ItemFactory:
     """Factory to contain the generic ways to create Items."""
 
     @staticmethod
-    async def random(owner_id: int) -> Item:
+    async def random(owner_id: int, **kwargs) -> Item:
         """Generate a fully random item."""
+        player = await Player.objects.get(id=owner_id)
+        await player.update(item_counter=player.item_counter + 1)
+
         return await Item.objects.create(
-            name="Random",
-            owner_id=owner_id,
-            value=random.randint(1, 100),
-            _rarity=random.choice(list(Rarity)).value,
-            _item_type=random.choice(list(ItemType)).value
+            item_id=kwargs.get('item_id') or uid.get_uid(player.id, player.item_counter),
+            name=kwargs.get('name') or "RandomWeapon",
+            owner=player,
+            value=kwargs.get('value') or random.randint(1, 100),
+            _rarity=kwargs.get('rarity') or random.choice(list(Rarity)).value,
+            _item_type=kwargs.get('item_type') or ItemType.Weapon.value
         )
 
 
@@ -32,33 +38,35 @@ class Item(Model):
     __tablename__ = "item"
     __database__ = Database.database
     __metadata__ = Database.metadata
+    __table_args__ = (UniqueConstraint('owner', 'item_id'),)
 
-    id = Integer(primary_key=True, index=True)
-    name = String(max_length=50)
-    player = ForeignKey(Player)
-    value = Integer()
-    _rarity = Integer()
-    _item_type = Integer()
+    id: int = Integer(primary_key=True, index=True)
+    item_id: str = String(max_length=4)
+    name: str = String(max_length=50)
+    owner: Player = ForeignKey(Player)
+    value: int = Integer()
+    _rarity: int = Integer()
+    _item_type: int = Integer()
 
     @property
     def embed_field(self) -> dict[str, str]:
         """Get a embed field that represents the Item"""
         return {
-            "name": f"`{self.id}` | {self.rarity.emoji} {self.name}",
-            "value": f"Value: {self.value}"
+            "name": f"`{self.item_id}` | {self.rarity.emoji} {self.name}",
+            "value": f"Value: {self.value} - Type: {self.item_type.name}"
         }
 
     @property
     async def embed(self) -> Embed:
         """Get a Embed that represents the Item"""
         embed = Embed(title=f"{self.rarity.emoji} {self.name}", colour=self.rarity.colour)
-        embed.add_field(name="Item ID", value=str(self.id))
+        embed.add_field(name="Item ID", value=f"`{self.item_id}`")
         embed.add_field(name="Value", value=str(self.value))
 
         bot = ArenaBot.instance
-        owner = bot.get_user(self.player)
+        owner = bot.get_user(self.owner.id)
         if owner is None:
-            owner = await bot.fetch_user(self.player)
+            owner = await bot.fetch_user(self.owner.id)
 
         embed.set_author(name=owner.display_name, icon_url=owner.avatar_url)
         return embed

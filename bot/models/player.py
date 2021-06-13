@@ -18,6 +18,7 @@ class Player(Model):
     id = BigInteger(primary_key=True, index=True)
     colour = Integer(default=lambda: Colour.random().value)
     coin = Integer(default=0)
+    item_counter = Integer(default=0)
     join_date = DateTime(default=datetime.utcnow)
 
     @property

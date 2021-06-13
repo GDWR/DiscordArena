@@ -7,10 +7,11 @@ import logging
 
 from aiohttp import ClientSession
 from discord import Intents
-from discord.ext.commands import Bot
+from discord.ext.commands import Bot, Context, CommandInvokeError
 
 from config import COMMAND_PREFIX
 from database import Database
+from exceptions import NotFound
 
 
 class ArenaBot(Bot):
@@ -46,6 +47,13 @@ class ArenaBot(Bot):
         """Task when the bot disconnects from the gateway."""
         self.logger.info("Bot Disconnected")
         await self.session.close()
+
+    async def on_command_error(self, ctx: Context, exception: CommandInvokeError):
+        """Handle global command errors."""
+        if hasattr(exception, 'original') and isinstance(exception.original, NotFound):
+            await ctx.reply(embed=exception.original.embed)
+        else:
+            raise exception
 
     def load_extensions(self) -> None:
         """Iterate through all the `.py` files found int `bot/cogs` and load them as cogs."""

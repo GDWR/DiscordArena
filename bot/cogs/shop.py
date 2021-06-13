@@ -10,18 +10,18 @@ class Shop(Cog):
         self.bot = bot
 
     @group()
-    async def shop(self, ctx: Context) -> None:
+    async def shop(self, ctx: Context):
         """Task group. Sends current task if currently doing one, else send help message."""
         if ctx.invoked_subcommand is None:
             await ctx.reply("Shop help message...")
 
     @shop.command()
-    async def buy(self, ctx: Context) -> None:
+    async def buy(self, ctx: Context):
         """Buy an item."""
         await ctx.reply("Buy...")
 
     @shop.command()
-    async def sell(self, ctx: Context) -> None:
+    async def sell(self, ctx: Context):
         """Sell an item."""
         await ctx.reply("Sell...")
 

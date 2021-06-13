@@ -19,6 +19,7 @@ class Log(object):
         self.logger = logging.getLogger(name)
 
     def __call__(self, func):
+        """Logs function execution when decorating a function"""
         def wrapper(*args, **kwargs):
             self.logger.info(f"Calling {func.__name__}")
             return func(*args, **kwargs)

@@ -7,10 +7,10 @@ from pathlib import Path
 from aiohttp import ClientSession
 from discord import Intents
 from discord.ext.commands import Bot, Context, CommandInvokeError
-from orm import NoMatch
 
 from config import COMMAND_PREFIX
 from database import Database
+from exceptions import NotFound
 
 
 class ArenaBot(Bot):
@@ -46,8 +46,8 @@ class ArenaBot(Bot):
 
     async def on_command_error(self, ctx: Context, exception: CommandInvokeError):
         """Handle global command errors."""
-        if hasattr(exception, 'original') and isinstance(exception.original, NoMatch):
-            await ctx.reply(f"Please register your account with `{self.command_prefix}join`", mention_author=False)
+        if hasattr(exception, 'original') and isinstance(exception.original, NotFound):
+            await ctx.reply(embed=exception.original.embed)
         else:
             raise exception
 

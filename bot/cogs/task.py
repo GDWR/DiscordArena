@@ -1,3 +1,4 @@
+import random
 from datetime import datetime, timedelta
 
 from discord import DiscordException
@@ -5,7 +6,7 @@ from discord.ext.commands import Cog, Context, group, CommandInvokeError
 from orm import NoMatch
 
 from arena_bot import ArenaBot
-from models import Player, Task as TaskModel, TaskType
+from models import Player, Task as TaskModel, TaskType, TaskProficiency
 
 
 class AlreadyOnTask(DiscordException):
@@ -28,6 +29,9 @@ class Task(Cog):
 
             if task.completion_date <= datetime.utcnow():
                 embed.description = "Task completed"
+
+                proficiency = await TaskProficiency.objects.get(player=task.player)
+                await proficiency.increment_exp(task.task_type, random.randint(4, 16))
                 await task.update(completed=True)
             else:
                 embed.description = f"Already on a task, finishing at {task.completion_date}"
@@ -35,6 +39,26 @@ class Task(Cog):
 
         else:
             raise error
+
+    @staticmethod
+    async def _get_or_create_player_proficiency(user_id: int) -> TaskProficiency:
+        """Get the player proficiency, if it doesn't exist one will be made."""
+        player = await Player.objects.get(id=user_id)
+        try:
+            return await TaskProficiency.objects.get(player=player)
+        except NoMatch:
+            return await TaskProficiency.objects.create(player=player)
+
+    async def _create_task(self, user_id: int, task: TaskType) -> TaskModel:
+        proficiency = await self._get_or_create_player_proficiency(user_id)
+        task_level = proficiency.task_level(task)
+        print(task_level)
+
+        return await TaskModel.objects.create(
+            player=proficiency.player,
+            completion_date=datetime.utcnow() + timedelta(seconds=5),
+            _task_type=task.value,
+        )
 
     @group()
     async def task(self, ctx: Context) -> None:
@@ -49,50 +73,31 @@ class Task(Cog):
 
     @task.command()
     async def hunt(self, ctx: Context) -> None:
-        """Begin a hunt."""
-        player = await Player.objects.get(id=ctx.author.id)
-
-        task = await TaskModel.objects.create(
-            player=player,
-            completion_date=datetime.utcnow() + timedelta(minutes=1),
-            _task_type=TaskType.Hunt.value,
-        )
+        """Begin a hunt_exp."""
+        task = await self._create_task(ctx.author.id, TaskType.Hunt)
         embed = await task.embed
         await ctx.send(embed=embed)
 
     @task.command()
     async def mine(self, ctx: Context) -> None:
         """Begin a mining session."""
-        player = await Player.objects.get(id=ctx.author.id)
-        task = await TaskModel.objects.create(
-            player=player,
-            completion_date=datetime.utcnow() + timedelta(minutes=1),
-            _task_type=TaskType.Mine.value,
-        )
+        task = await self._create_task(ctx.author.id, TaskType.Mine)
         embed = await task.embed
         await ctx.send(embed=embed)
 
     @task.command()
     async def gather(self, ctx: Context) -> None:
-        """Begin a gather."""
-        player = await Player.objects.get(id=ctx.author.id)
-        task = await TaskModel.objects.create(
-            player=player,
-            completion_date=datetime.utcnow() + timedelta(minutes=1),
-            _task_type=TaskType.Gather.value,
-        )
-        await ctx.send(embed=await task.embed)
+        """Begin a gather_exp."""
+        task = await self._create_task(ctx.author.id, TaskType.Gather)
+        embed = await task.embed
+        await ctx.send(embed=embed)
 
     @task.command()
     async def lumber(self, ctx: Context) -> None:
         """Begin a woodcutting session."""
-        player = await Player.objects.get(id=ctx.author.id)
-        task = await TaskModel.objects.create(
-            player=player,
-            completion_date=datetime.utcnow() + timedelta(minutes=1),
-            _task_type=TaskType.Lumber.value,
-        )
-        await ctx.send(embed=await task.embed)
+        task = await self._create_task(ctx.author.id, TaskType.Lumber)
+        embed = await task.embed
+        await ctx.send(embed=embed)
 
 
 def setup(bot: ArenaBot) -> None:

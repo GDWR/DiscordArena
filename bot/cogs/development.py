@@ -5,7 +5,11 @@ from bot.models import ItemFactory
 
 
 class Development(Cog):
-    """Cog that holds development tools, this isn't loaded in Production."""
+    """
+    Cog that holds development tools, this isn't loaded in Production.
+
+    Feel free to add any useful commands that will help with development.
+    """
 
     def __init__(self, bot: ArenaBot):
         self.bot = bot
@@ -14,7 +18,7 @@ class Development(Cog):
     async def random_item(self, ctx: Context) -> None:
         """Generate a random item for the author."""
         item = await ItemFactory.random(ctx.author.id)
-        await ctx.send(embed=await item.embed)
+        await ctx.reply(embed=await item.embed)
 
 
 def setup(bot: ArenaBot) -> None:

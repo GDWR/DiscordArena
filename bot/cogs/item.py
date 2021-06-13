@@ -12,7 +12,7 @@ class Item(Cog):
     @command()
     async def item(self, ctx: Context) -> None:
         """Task group. Sends current task if currently doing one, else send help message."""
-        await ctx.send("Item...")
+        await ctx.reply("Item...")
 
 
 def setup(bot: ArenaBot) -> None:

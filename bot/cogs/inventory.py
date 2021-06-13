@@ -19,7 +19,7 @@ class Inventory(Cog):
         for item in items:
             embed.add_field(**item.embed_field)
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
 
 def setup(bot: ArenaBot) -> None:

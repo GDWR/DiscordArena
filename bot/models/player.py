@@ -17,6 +17,7 @@ class Player(Model):
 
     id = BigInteger(primary_key=True, index=True)
     colour = Integer(default=lambda: Colour.random().value)
+    coin = Integer(default=0)
     join_date = DateTime(default=datetime.utcnow)
 
     @property
@@ -27,7 +28,11 @@ class Player(Model):
         if (discord_user := bot.get_user(self.id)) is None:
             discord_user = await bot.fetch_user(self.id)
 
-        embed = Embed(title=discord_user.name, colour=self.colour)
+        embed = Embed(
+            title=discord_user.name,
+            description=f"Coins: {self.coin}",
+            colour=self.colour
+        )
 
         embed.set_author(name=discord_user.display_name, icon_url=discord_user.avatar_url)
         return embed

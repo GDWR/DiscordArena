@@ -58,11 +58,10 @@ class Task(Cog):
     async def _create_task(self, user_id: int, task: TaskType) -> TaskModel:
         proficiency = await self._get_or_create_player_proficiency(user_id)
         task_level = proficiency.task_level(task)
-        print(task_level)
 
         return await TaskModel.objects.create(
             player=proficiency.player,
-            completion_date=datetime.utcnow() + timedelta(seconds=5),
+            completion_date=datetime.utcnow() + timedelta(minutes=config.TASK_BASE_TIME),
             _task_type=task.value,
         )
 

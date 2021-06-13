@@ -2,7 +2,7 @@ from discord import Embed
 from discord.ext.commands import Cog, command, Context
 
 from arena_bot import ArenaBot
-from models import Item
+from models import Item, Player
 
 
 class Inventory(Cog):
@@ -10,10 +10,11 @@ class Inventory(Cog):
     def __init__(self, bot: ArenaBot):
         self.bot = bot
 
-    @command()
-    async def inventory(self, ctx: Context) -> None:
+    @command(aliases=["inv"])
+    async def inventory(self, ctx: Context):
         """Display the inventory of the author."""
-        items = await Item.objects.filter(owner_id=ctx.author.id).all()
+        player = await Player.objects.get(id=ctx.author.id)
+        items = await Item.objects.filter(owner=player).all()
 
         embed = Embed(title="Items", colour=ctx.author.colour)
         for item in items:

@@ -22,7 +22,10 @@ class Development(Cog):
         self.bot.database.drop_all_tables()
         self.bot.database.create_all_tables()
         
-
+    @command()
+    async def ping(self, ctx: Context) -> None:
+        """Sends the ping in ms."""
+        await ctx.send(f"Ping is {round(self.bot.latency * 1000)}ms")
 
 def setup(bot: ArenaBot) -> None:
     """Add the cog"""

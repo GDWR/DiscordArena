@@ -18,12 +18,14 @@ class Core(Cog):
             # Get back from database to reconstruct object correctly.
             player = await Player.objects.get(id=ctx.author.id)
             await ctx.send(embed=await player.embed)
+            return
+        await ctx.reply(":x: Already have an account created", delete_after=5)
 
     @command()
     async def profile(self, ctx: Context) -> None:
         """Display the profile of the author."""
         player = await Player.objects.get(id=ctx.author.id)
-        await ctx.send(embed=player.embed)
+        await ctx.reply(embed=player.embed)
 
 
 def setup(bot: ArenaBot) -> None:

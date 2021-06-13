@@ -31,7 +31,7 @@ class Task(Cog):
                 await task.update(completed=True)
             else:
                 embed.description = f"Already on a task, finishing at {task.completion_date}"
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed)
 
         else:
             raise error
@@ -45,7 +45,7 @@ class Task(Cog):
 
         except NoMatch:
             if ctx.invoked_subcommand is None:
-                await ctx.send("Task help message...")
+                await ctx.reply("Task help message...")
 
     @task.command()
     async def hunt(self, ctx: Context) -> None:
@@ -58,7 +58,7 @@ class Task(Cog):
             _task_type=TaskType.Hunt.value,
         )
         embed = await task.embed
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @task.command()
     async def mine(self, ctx: Context) -> None:
@@ -70,7 +70,7 @@ class Task(Cog):
             _task_type=TaskType.Mine.value,
         )
         embed = await task.embed
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @task.command()
     async def gather(self, ctx: Context) -> None:
@@ -81,7 +81,7 @@ class Task(Cog):
             completion_date=datetime.utcnow() + timedelta(minutes=1),
             _task_type=TaskType.Gather.value,
         )
-        await ctx.send(embed=await task.embed)
+        await ctx.reply(embed=await task.embed)
 
     @task.command()
     async def lumber(self, ctx: Context) -> None:
@@ -92,7 +92,7 @@ class Task(Cog):
             completion_date=datetime.utcnow() + timedelta(minutes=1),
             _task_type=TaskType.Lumber.value,
         )
-        await ctx.send(embed=await task.embed)
+        await ctx.reply(embed=await task.embed)
 
 
 def setup(bot: ArenaBot) -> None:

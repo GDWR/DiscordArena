@@ -1,3 +1,4 @@
+import logging
 from os import getenv
 
 from dotenv import load_dotenv
@@ -14,6 +15,7 @@ DATABASE_HOST = setting("DATABASE_HOST", "database")
 DATABASE_PORT = setting("DATABASE_PORT", 5432, _type=int)
 DATABASE_USER = setting("DATABASE_USER", "postgres")
 DATABASE_PASS = setting("DATABASE_PASS", "postgres")
+LOG_LEVEL = logging.getLevelName(setting("LOG_LEVEL", "WARNING"))
 
 # Tasks
 PROFICIENCY_EXP_PER_LEVEL = setting("PROFICIENCY_EXP_PER_LEVEL", 8, _type=int)

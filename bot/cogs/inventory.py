@@ -10,7 +10,7 @@ class Inventory(Cog):
     def __init__(self, bot: ArenaBot):
         self.bot = bot
 
-    @command()
+    @command(aliases=["inv"])
     async def inventory(self, ctx: Context):
         """Display the inventory of the author."""
         player = await Player.objects.get(id=ctx.author.id)

@@ -18,12 +18,13 @@ class ItemFactory:
     @staticmethod
     async def random(owner_id: int) -> Item:
         """Generate a fully random item."""
+        player = await Player.objects.get(id=owner_id)
         return await Item.objects.create(
-            name="Random",
-            owner_id=owner_id,
+            name="RandomWeapon",
+            owner=player,
             value=random.randint(1, 100),
             _rarity=random.choice(list(Rarity)).value,
-            _item_type=random.choice(list(ItemType)).value
+            _item_type=ItemType.Weapon.value
         )
 
 
@@ -33,12 +34,12 @@ class Item(Model):
     __database__ = Database.database
     __metadata__ = Database.metadata
 
-    id = Integer(primary_key=True, index=True)
-    name = String(max_length=50)
-    player = ForeignKey(Player)
-    value = Integer()
-    _rarity = Integer()
-    _item_type = Integer()
+    id: int = Integer(primary_key=True, index=True)
+    name: str = String(max_length=50)
+    owner: Player = ForeignKey(Player)
+    value: int = Integer()
+    _rarity: int = Integer()
+    _item_type: int = Integer()
 
     @property
     def embed_field(self) -> dict[str, str]:
@@ -56,9 +57,9 @@ class Item(Model):
         embed.add_field(name="Value", value=str(self.value))
 
         bot = ArenaBot.instance
-        owner = bot.get_user(self.player)
+        owner = bot.get_user(self.owner.id)
         if owner is None:
-            owner = await bot.fetch_user(self.player)
+            owner = await bot.fetch_user(self.owner.id)
 
         embed.set_author(name=owner.display_name, icon_url=owner.avatar_url)
         return embed

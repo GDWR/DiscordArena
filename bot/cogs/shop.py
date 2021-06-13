@@ -13,17 +13,17 @@ class Shop(Cog):
     async def shop(self, ctx: Context) -> None:
         """Task group. Sends current task if currently doing one, else send help message."""
         if ctx.invoked_subcommand is None:
-            await ctx.send("Shop help message...")
+            await ctx.reply("Shop help message...")
 
     @shop.command()
     async def buy(self, ctx: Context) -> None:
         """Buy an item."""
-        await ctx.send("Buy...")
+        await ctx.reply("Buy...")
 
     @shop.command()
     async def sell(self, ctx: Context) -> None:
         """Sell an item."""
-        await ctx.send("Sell...")
+        await ctx.reply("Sell...")
 
 
 def setup(bot: ArenaBot) -> None:

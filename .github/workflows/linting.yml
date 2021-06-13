@@ -26,6 +26,5 @@ jobs:
         pip install poetry===1.1.6
         poetry install
     - name: Lint with flake8
-      working-directory: bot
       run: |
         poetry run task lint

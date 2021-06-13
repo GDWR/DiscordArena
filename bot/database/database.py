@@ -1,5 +1,5 @@
 import sqlalchemy
-from config import DATABASE_USER, DATABASE_HOST, DATABASE_PORT, DATABASE_PASS
+from bot.config import DATABASE_USER, DATABASE_HOST, DATABASE_PORT, DATABASE_PASS
 from databases import Database as db
 
 
@@ -17,7 +17,7 @@ class Database:
         """Connect to the database."""
         print(f"Connecting to database: {self.database.url}")
         await self.database.connect()
-        print("Connected to database")
+        print(f"Connected to database: {self.database.url}")
         self.create_all_tables()
 
     async def disconnect(self) -> None:

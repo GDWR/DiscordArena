@@ -1,5 +1,5 @@
 from random import choices
-from models import Rarity
+from bot.models import Rarity
 from typing import Union
 
 

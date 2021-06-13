@@ -1,8 +1,0 @@
-aiohttp~=3.7.4.post0
-asyncpg~=0.23.0
-databases~=0.4.3
-discord.py~=1.7.2
-https://github.com/GDWR/orm/releases/download/GDWR/orm-GDWR-0.1.4.tar.gz
-python-dotenv~=0.17.1
-psycopg2-binary~=2.8.6
-SQLAlchemy~=1.3.24

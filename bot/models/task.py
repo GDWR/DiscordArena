@@ -3,7 +3,7 @@ from __future__ import annotations
 from discord import Embed
 from orm import BigInteger, Model, Integer, DateTime, Boolean, ForeignKey
 
-from database import Database
+from bot.database import Database
 from .task_type import TaskType
 from .player import Player
 

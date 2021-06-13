@@ -9,7 +9,7 @@ from discord.ext.commands import (
     ExtensionNotLoaded
 )
 
-from arena_bot import ArenaBot
+from bot.arena_bot import ArenaBot
 
 
 class CogManager(Cog):

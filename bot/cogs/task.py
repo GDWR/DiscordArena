@@ -4,8 +4,8 @@ from discord import DiscordException
 from discord.ext.commands import Cog, Context, group, CommandInvokeError
 from orm import NoMatch
 
-from arena_bot import ArenaBot
-from models import Player, Task as TaskModel, TaskType
+from bot.arena_bot import ArenaBot
+from bot.models import Player, Task as TaskModel, TaskType
 
 
 class AlreadyOnTask(DiscordException):

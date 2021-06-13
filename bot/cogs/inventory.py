@@ -1,8 +1,8 @@
 from discord import Embed
 from discord.ext.commands import Cog, command, Context
 
-from arena_bot import ArenaBot
-from models import Item
+from bot.arena_bot import ArenaBot
+from bot.models import Item
 
 
 class Inventory(Cog):

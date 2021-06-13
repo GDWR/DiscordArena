@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from orm import BigInteger, Model
 
-from database import Database
+from bot.database import Database
 
 
 class Guild(Model):

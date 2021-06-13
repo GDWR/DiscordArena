@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "bot"
+version = "0.1.0"
+description = "A discord bot"
+authors = ["GDWR <gregory.dwr@gmail.com>"]
+homepage = "https://github.com/GDWR/DiscordArena"
+repository = "https://github.com/GDWR/DiscordArena"
+readme = "README.md"
+license = "GPL-3.0-only"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+discord = "^1.0.1"
+SQLAlchemy = "^1.2"
+orm = {git = "https://github.com/GDWR/orm.git", branch = "feature/bigint"}
+databases = {extras = ["postgresql"], version = "^0.4.3"}
+psycopg2 = "^2.8.6"
+
+[tool.poetry.dev-dependencies]
+python-dotenv = "^0.17.1"
+databases = {extras = ["sqlite"], version = "^0.4.3"}
+taskipy = "^1.8.1"
+flake8 = "^3.9.2"
+flake8-docstrings = "^1.6.0"
+
+[tool.poetry.scripts]
+bot = 'bot.__main__:main'
+
+[tool.taskipy.tasks]
+lint = "poetry run flake8 bot"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

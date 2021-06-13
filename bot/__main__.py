@@ -1,7 +1,8 @@
-from config import TOKEN
-from arena_bot import ArenaBot
+from bot.config import TOKEN
+from bot.arena_bot import ArenaBot
 
-bot = ArenaBot.create()
-bot.load_extensions()
+def main() -> None:
+    bot = ArenaBot.create()
+    bot.load_extensions()
 
-bot.run(TOKEN)
+    bot.run(TOKEN)

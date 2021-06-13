@@ -5,9 +5,9 @@ import random
 from discord import Embed
 from orm import Model, Integer, String, ForeignKey
 
-from arena_bot import ArenaBot
-from database import Database
-from models.rarity import Rarity
+from bot.arena_bot import ArenaBot
+from bot.database import Database
+from bot.models.rarity import Rarity
 from .player import Player
 from .item_type import ItemType
 

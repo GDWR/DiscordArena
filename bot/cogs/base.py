@@ -1,7 +1,7 @@
 from discord.ext.commands import Cog, Context, command
 
-from arena_bot import ArenaBot
-from models import Player
+from bot.arena_bot import ArenaBot
+from bot.models import Player
 
 
 class Base(Cog):

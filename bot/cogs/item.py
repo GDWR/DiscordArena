@@ -1,6 +1,6 @@
 from discord.ext.commands import Cog, Context, command
 
-from arena_bot import ArenaBot
+from bot.arena_bot import ArenaBot
 
 
 class Item(Cog):

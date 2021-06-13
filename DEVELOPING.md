@@ -18,7 +18,7 @@ All that is required is a docker-compose interpreter.
 Within your Docker workspace you can use poetry to run the bot, run linting and run tests. Below are listed the commands
 that you should get familiar with.
 
-You must have a `.env` file at the root of the project with atleast the `TOKEN` variable set. Below are the other 
+You must have a `.env` file at the root of the project with at least the `TOKEN` variable set. Below are the other 
 environment variables you can change. There is a [.env.example](.env.example) file that contains a environment file 
 without the values filled in.
 
@@ -32,3 +32,9 @@ Environment Variables
 |DATABASE_PORT  |Postgres database port                   |5432     |
 |DATABASE_USER  |Postgres database username               |postgres |
 |DATABASE_PASS  |Postgres database password               |postgres |
+
+### Commands to Remember:
+
+`poetry run bot` - Runs the discord bot
+
+`poetry run task lint` - Lints the project with flake8

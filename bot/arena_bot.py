@@ -32,7 +32,7 @@ class ArenaBot(Bot):
         return cls.instance
 
     def __init__(self, command_prefix: str, *args, **kwargs):
-        super().__init__(command_prefix, *args, **kwargs)
+        super().__init__(command_prefix, case_sensitive=False, *args, **kwargs)
         self.logger = logging.getLogger(__name__)
         self.session = ClientSession()
         self.database = Database()

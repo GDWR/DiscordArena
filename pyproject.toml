@@ -22,10 +22,13 @@ databases = {extras = ["sqlite"], version = "^0.4.3"}
 taskipy = "^1.8.1"
 flake8 = "^3.9.2"
 flake8-docstrings = "^1.6.0"
+pre-commit = "^2.13.0"
 
 [tool.taskipy.tasks]
 lint = "poetry run flake8 bot"
 bot = "cd bot && poetry run python __main__.py"
+install-hooks = "poetry run pre-commit install"
+pre-commit = "poetry run pre-commit run --all-files"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

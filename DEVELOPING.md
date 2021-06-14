@@ -58,6 +58,7 @@ Environment Variables
 |DATABASE_PORT  |Postgres database port                   |5432     |
 |DATABASE_USER  |Postgres database username               |postgres |
 |DATABASE_PASS  |Postgres database password               |postgres |
+|LOG_LEVEL      |Logging level to record                  |WARNING  |
 
 ### Commands to Remember:
 

@@ -5,6 +5,7 @@ from discord import Colour
 
 class TaskType(Enum):
     """Represent the type of an Task"""
+
     Hunt = 1
     Mine = 2
     Gather = 3

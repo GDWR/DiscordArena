@@ -1,4 +1,4 @@
-from discord.ext.commands import Cog, command, Context
+from discord.ext.commands import Cog, Context, command
 
 from arena_bot import ArenaBot
 from models import ItemFactory, ItemType

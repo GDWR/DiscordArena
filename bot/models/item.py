@@ -3,7 +3,7 @@ from __future__ import annotations
 import random
 
 from discord import Embed
-from orm import Model, Integer, String, ForeignKey
+from orm import ForeignKey, Integer, Model, String
 from sqlalchemy import UniqueConstraint
 
 from arena_bot import ArenaBot
@@ -35,6 +35,7 @@ class ItemFactory:
 
 class Item(Model):
     """Representation of an Item, this is a Database Object."""
+
     __tablename__ = "item"
     __database__ = Database.database
     __metadata__ = Database.metadata

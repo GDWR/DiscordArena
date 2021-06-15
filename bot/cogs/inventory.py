@@ -1,5 +1,5 @@
 from discord import Embed
-from discord.ext.commands import Cog, command, Context
+from discord.ext.commands import Cog, Context, command
 
 from arena_bot import ArenaBot
 from models import Item, Player
@@ -7,6 +7,7 @@ from models import Item, Player
 
 class Inventory(Cog):
     """Cog holds Inventory commands to filter and/or view items in the game."""
+
     def __init__(self, bot: ArenaBot):
         self.bot = bot
 

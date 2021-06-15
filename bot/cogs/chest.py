@@ -3,7 +3,7 @@ from orm import NoMatch
 
 from arena_bot import ArenaBot
 from exceptions import ItemNotFound
-from models import Item, ItemType, ItemFactory
+from models import Item, ItemFactory, ItemType
 
 
 class Chest(Cog):

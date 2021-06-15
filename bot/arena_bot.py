@@ -57,9 +57,9 @@ class ArenaBot(Bot):
 
     def load_extensions(self) -> None:
         """Iterate through all the `.py` files found int `bot/cogs` and load them as cogs."""
-        for file in map(Path, glob("cogs/*.py")):
+        for file in map(Path, glob(str("cogs/*.py"))):
             self.load_extension(f"cogs.{file.stem}")
-            self.logger.info(f"Loaded cogs.{file.stem}")
+            self.logger.debug(f"Loaded cogs.{file.stem}")
 
     @classmethod
     def create(cls) -> ArenaBot:

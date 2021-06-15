@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from discord import Embed
-from orm import BigInteger, Model, Integer, DateTime, Boolean, ForeignKey
+from orm import BigInteger, Boolean, DateTime, ForeignKey, Integer, Model
 
 from database import Database
 from .task_type import TaskType
@@ -10,6 +10,7 @@ from .player import Player
 
 class Task(Model):
     """Representation of a Task, this is a Database Object."""
+
     __tablename__ = "task"
     __database__ = Database.database
     __metadata__ = Database.metadata

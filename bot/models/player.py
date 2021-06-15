@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from discord import Embed, Colour
-from orm import DateTime, BigInteger, Model, Integer
+from discord import Colour, Embed
+from orm import BigInteger, DateTime, Integer, Model
 
 from arena_bot import ArenaBot
 from database import Database
@@ -11,6 +11,7 @@ from database import Database
 
 class Player(Model):
     """Representation of a Player, this is a Database Object."""
+
     __tablename__ = "player"
     __database__ = Database.database
     __metadata__ = Database.metadata

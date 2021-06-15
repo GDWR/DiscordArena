@@ -1,7 +1,7 @@
 import random
 from datetime import datetime, timedelta
 
-import config as config
+import config
 from arena_bot import ArenaBot
 from discord import Embed
 from discord.ext.commands import Cog, CommandInvokeError, Context, group
@@ -13,6 +13,7 @@ from orm import NoMatch
 
 class AlreadyOnTask(Exception):
     """Error raised when a user attempts to start a task while already on one."""""
+
     def __init__(self, task: TaskModel):
         self.task = task
 
@@ -54,7 +55,7 @@ class Task(Cog):
         """
         output = config.TASK_BASE_TIME
         current_step = config.TASK_BASE_DECREASE
-        for i in range(level):
+        for _ in range(level):
             output -= current_step
             current_step *= config.TASK_DECREASE_MULTI
         return max(config.TASK_BASE_TIME // 2, output)

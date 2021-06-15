@@ -1,5 +1,5 @@
 from os import getenv
-from typing import TypeVar, Type, Optional
+from typing import Optional, Type, TypeVar
 
 T = TypeVar("T")
 

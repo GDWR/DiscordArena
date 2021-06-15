@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from orm import Model, Integer, ForeignKey
+from orm import ForeignKey, Integer, Model
 
 from config import PROFICIENCY_EXP_PER_LEVEL
 from database import Database
@@ -10,6 +10,7 @@ from .player import Player
 
 class TaskProficiency(Model):
     """Representation of a Player Task Proficiency, this is a Database Object."""
+
     __tablename__ = "task_proficiency"
     __database__ = Database.database
     __metadata__ = Database.metadata

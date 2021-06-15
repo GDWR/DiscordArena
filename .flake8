@@ -1,5 +1,14 @@
 [flake8]
-ignore = E501, D100, D211, D204, D400, D107, D205, D202, D401
+ignore =
+    ANN002, ANN003, ANN101, ANN204
+    D100, D107, D202, D205, D211, D400, D401,
+    E501
+    I100, I201
+
+per-file-ignores =
+    # imported but unused
+    bot/cogs/*.py: ANN201
+
 exclude = __init__.py, __main__.py
 max-complexity = 10
 max-line-length = 120

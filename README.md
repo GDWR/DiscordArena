@@ -15,4 +15,4 @@ Creating a Discord Game
 <br>
 
 ### Contributing
-Find out how to contribute [here](CONTRIBUTING.md)
+Find out how to contribute [here](docs/CONTRIBUTING.md)

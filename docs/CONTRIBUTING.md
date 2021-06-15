@@ -19,7 +19,7 @@ You can run linting using commands from the root of the repo.
 
 `poetry run task lint` - Lints the project using flake8
 
-See [here](/DEVELOPING.md#commands-to-remember) for more useful commands
+See [here](./DEVELOPING.md#commands-to-remember) for more useful commands
 
 ### Development Environment
 For documentation on the developing environment see [here](DEVELOPING.md)

@@ -1,11 +1,14 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Bot" type="PythonConfigurationType" factoryName="Python">
+  <configuration default="false" name="Bot (Venv)" type="PythonConfigurationType" factoryName="Python">
     <module name="DiscordArena" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
-    <option name="SDK_HOME" value="docker-compose://[$PROJECT_DIR$\docker-compose.yml]:bot/python" />
+    <envs>
+      <env name="PYTHONUNBUFFERED" value="1" />
+    </envs>
+    <option name="SDK_HOME" value="" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-    <option name="IS_MODULE_SDK" value="false" />
+    <option name="IS_MODULE_SDK" value="true" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -19,13 +22,6 @@
         <ENTRY IS_ENABLED="true" PARSER="runconfig" />
       </ENTRIES>
     </EXTENSION>
-    <PathMappingSettings>
-      <option name="pathMappings">
-        <list>
-          <mapping local-root="$PROJECT_DIR$" remote-root="/workspace" />
-        </list>
-      </option>
-    </PathMappingSettings>
     <option name="SCRIPT_NAME" value="bot" />
     <option name="PARAMETERS" value="" />
     <option name="SHOW_COMMAND_LINE" value="false" />

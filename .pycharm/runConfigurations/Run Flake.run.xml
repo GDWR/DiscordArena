@@ -1,12 +1,12 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Flake" type="PythonConfigurationType" factoryName="Python">
+  <configuration default="false" name="Flake8 (Venv)" type="PythonConfigurationType" factoryName="Python">
     <module name="DiscordArena" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
       <env name="PYTHONUNBUFFERED" value="1" />
     </envs>
-    <option name="SDK_HOME" value="docker-compose://[$PROJECT_DIR$\docker-compose.yml]:bot/python" />
+    <option name="SDK_HOME" value="C:\Users\nkrxh\AppData\Local\pypoetry\Cache\virtualenvs\dispair-_lY5w3VG-py3.9\Scripts\python.exe" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -22,13 +22,6 @@
         <ENTRY IS_ENABLED="true" PARSER="runconfig" />
       </ENTRIES>
     </EXTENSION>
-    <PathMappingSettings>
-      <option name="pathMappings">
-        <list>
-          <mapping local-root="$PROJECT_DIR$" remote-root="/workspace" />
-        </list>
-      </option>
-    </PathMappingSettings>
     <option name="SCRIPT_NAME" value="flake8" />
     <option name="PARAMETERS" value="bot" />
     <option name="SHOW_COMMAND_LINE" value="false" />

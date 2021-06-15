@@ -26,7 +26,7 @@ pre-commit = "^2.13.0"
 
 [tool.taskipy.tasks]
 lint = "poetry run flake8 bot"
-bot = "cd bot && poetry run python __main__.py"
+bot = "poetry run python -m bot"
 install-hooks = "poetry run pre-commit install"
 pre-commit = "poetry run pre-commit run --all-files"
 
